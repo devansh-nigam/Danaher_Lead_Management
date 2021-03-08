@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Danaher Lead</string>
+    <string name="help_us_know_you_better">Help Us Know You Better</string>
+    <string name="full_name">Full Name</string>
+    <string name="enterprise_email">Enterprise Email</string>
+    <string name="i_am_a_current_employee_of_the_above_mentioned_danaher_operating_company_and_i_have_read_and_agreed_to_terms_of_use_of_danaher_corp">I am a current employee of the above mentioned Danaher Operating Company and I have read and agreed to Terms of Use of Danaher Corp.</string>
+    <string name="your_password_must_be_atleast_8_characters_with_atleast_1_number_and_1_special_character">Your password must be at least 8 characters.<br /> With at least 1 number and 1 special character</string>
+    <string name="password">Password</string>
+    <string name="show_password">Show Password</string>
+    <string name="sign_me_up">Sign Me Up!</string>
+    <string name="register_here">Register Here</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="log_in">Log In</string>
+    <string name="already_have_an_account">Already Have An Account?</string>
+    <string name="lead_management">Lead Management</string>
+    <string name="terms_of_use">Terms Of Use</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="assigned_leads">Assigned Leads</string>
+    <string name="submitted_leads">Submitted Leads</string>
+    <string name="submit_a_lead">Submit A Lead</string>
+    <string name="lead_submission_form">Lead Submission Form</string>
+    <string name="customer_name">Customer Name</string>
+    <string name="opportunity_details">Opportunity Details</string>
+    <string name="segment_details">Segment Details</string>
+    <string name="value_of_lead_in">Value Of Lead (in $)</string>
+    <string name="all_the_details_mentioned_above_about_the_lead_is_to_the_best_of_my_knowledge">All the details mentioned above about the lead is to the best of my knowledge.</string>
+    <string name="lead_submitted_to">Lead Submitted To</string>
+    <string name="lead_submitted_by">Lead Submitted By:</string>
+    <string name="submit">Submit</string>
+    <string name="welcome_aboard">Welcome Aboard!</string>
+    <string name="submitted_by">Submitted By:</string>
+    <string name="email_address">Email Address</string>
+</resources>

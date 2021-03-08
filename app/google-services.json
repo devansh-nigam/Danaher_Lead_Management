@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "517146367407",
+    "project_id": "danaher-lead-management-bdb8f",
+    "storage_bucket": "danaher-lead-management-bdb8f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517146367407:android:487a98e675687aa1368b5a",
+        "android_client_info": {
+          "package_name": "com.example.danaherleadmanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517146367407-p7cue0vu0h1jg7v2fql0jsbhgal6qkp6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyW7cKkmMUdVnNwQmAp5XoYJb1689JQPk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517146367407-p7cue0vu0h1jg7v2fql0jsbhgal6qkp6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
