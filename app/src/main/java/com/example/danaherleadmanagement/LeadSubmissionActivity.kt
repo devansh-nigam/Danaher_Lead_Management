@@ -151,8 +151,8 @@ class LeadSubmissionActivity : AppCompatActivity() {
 
 
 
-                val now=Timestamp.now().toString()
-                val bytes= MessageDigest.getInstance("MD5").digest(now.toByteArray())
+                val now=Timestamp.now()
+                val bytes= MessageDigest.getInstance("MD5").digest(now.toString().toByteArray())
                 val hash=bytes.joinToString("") { "%02x".format(it) }
 
                 val leadDetails = hashMapOf(
@@ -163,7 +163,7 @@ class LeadSubmissionActivity : AppCompatActivity() {
                     "SubmittedBy" to currentUser!!.email,
                     "SubmittedTo" to email,
                     "Status" to "Open",
-                    "TimestampSubmission" to now,
+                    "TimestampSubmission" to now.toDate().toString(),
                     "TimestampValidated" to "",
                     "TimestampRejected" to "",
                     "Hash" to hash
