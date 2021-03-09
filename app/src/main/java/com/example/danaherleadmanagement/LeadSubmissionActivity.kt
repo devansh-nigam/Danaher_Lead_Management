@@ -159,13 +159,14 @@ class LeadSubmissionActivity : AppCompatActivity() {
                     "Name" to full_name,
                     "Opportunity" to opportunity,
                     "Segment" to segment,
-                    "Value" to value,
+                    "Value" to "$$value",
                     "SubmittedBy" to currentUser!!.email,
                     "SubmittedTo" to email,
                     "Status" to "Open",
                     "TimestampSubmission" to now.toDate().toString(),
                     "TimestampValidated" to "",
                     "TimestampRejected" to "",
+                    "TimestampClosed" to "",
                     "Hash" to hash
                 )
 

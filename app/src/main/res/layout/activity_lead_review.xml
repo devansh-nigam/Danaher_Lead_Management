@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Lead Review"
+            android:text="@string/lead_review"
             android:layout_marginTop="30dp"
             android:textSize="26sp"
             android:textColor="@color/white"
@@ -63,9 +63,28 @@
             android:textColor="@color/white"
             android:fontFamily="@font/latobold"
             android:background="@color/orange"/>
-
     </LinearLayout>
 
+
+    <LinearLayout
+        android:id="@+id/closeLayout"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/close"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/mark_as_closed"
+            android:layout_margin="3dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/latobold"
+            android:background="@color/yellow"/>
+
+    </LinearLayout>
 
         <LinearLayout
             android:layout_marginTop="20dp"
@@ -184,58 +203,164 @@
 
         </LinearLayout>
 
-        
-
-
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/validation"
             android:layout_marginTop="10dp"
-            android:id="@+id/vale"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/latolight"
-            android:textSize="16sp"
-            android:layout_gravity="center_horizontal"
-            android:padding="4dp"
-            android:textColor="@color/white"
-            android:text="@string/value_of_lead_in" />
+            android:orientation="horizontal"
+            android:padding="4dp">
 
-        <TextView
-            android:layout_marginTop="5dp"
-            android:id="@+id/valuee"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/latolight"
-            android:textSize="16sp"
-            android:layout_gravity="center_horizontal"
-            android:padding="4dp"
-            android:textColor="@color/white"
-            android:text="$ 237.29" />
+            <TextView
+                android:id="@+id/suba"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latolight"
+                android:textSize="16sp"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:text="@string/validated_on" />
 
+            <TextView
+                android:id="@+id/validatedOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latobold"
+                android:textSize="12sp"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:text="@string/timestamp" />
+        </LinearLayout>
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/rejection"
             android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latolight"
+                android:textSize="16sp"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:text="@string/rejected_on" />
+
+            <TextView
+                android:id="@+id/rejectedOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latobold"
+                android:textSize="12sp"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:text="@string/timestamp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/closure"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latolight"
+                android:textSize="16sp"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:text="@string/closed_on" />
+
+            <TextView
+                android:id="@+id/closedOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latobold"
+                android:textSize="12sp"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:text="@string/timestamp" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:id="@+id/vale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latolight"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:text="@string/value_of_lead" />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:id="@+id/valuee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latolight"
+                android:textSize="16sp"
+                android:layout_gravity="center_horizontal"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:text="$ 237.29" />
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+        <TextView
             android:id="@+id/op"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/latolight"
             android:textSize="16sp"
-            android:layout_gravity="center_horizontal"
             android:padding="4dp"
+            android:layout_gravity="center_horizontal"
             android:textColor="@color/white"
             android:text="@string/opportunity_details" />
 
         <TextView
-            android:layout_marginTop="5dp"
             android:id="@+id/opp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/latolight"
             android:textSize="16sp"
-            android:layout_gravity="center_horizontal"
             android:padding="4dp"
+            android:layout_gravity="center_horizontal"
             android:textColor="@color/white"
-            android:text="Details about the lead" />
+            android:text="@string/details_about_the_lead" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="4dp">
 
         <TextView
             android:layout_marginTop="10dp"
@@ -260,6 +385,9 @@
             android:padding="4dp"
             android:textColor="@color/white"
             android:text="Details about the lead" />
+
+    </LinearLayout>
+
 
 
 

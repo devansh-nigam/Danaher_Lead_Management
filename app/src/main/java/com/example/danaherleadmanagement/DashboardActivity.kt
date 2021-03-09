@@ -11,6 +11,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.danaherleadmanagement.databinding.ActivityDashboardBinding
@@ -54,11 +55,8 @@ class DashboardActivity : AppCompatActivity() {
         var full_name=""
         var domain=""
         var company=""
-        //val full_name:String =
 
-        //Getting The Details of the User and Displaying it
-
-            db.collection("Users").document(user.email).collection("Account Info").get().addOnSuccessListener {
+            db.collection("Users").document(user.email!!).collection("Account Info").get().addOnSuccessListener {
                 full_name=it.documents[0]["Name"] as String
                 domain=it.documents[0]["Domain"] as String
                 company=it.documents[0]["OpCo"] as String
@@ -118,7 +116,6 @@ class DashboardActivity : AppCompatActivity() {
         setQuery(query,LeadModel::class.java).build()
 
         assignedLeadAdapter= LeadAdapter(firestoreRecyclerOptions)
-
         layoutManager= LinearLayoutManager(this)
         (layoutManager as LinearLayoutManager).orientation = LinearLayoutManager.HORIZONTAL
         binding.recyclerViewAssignedLeads.layoutManager=layoutManager

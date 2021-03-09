@@ -2,14 +2,17 @@ package com.example.danaherleadmanagement
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getColor
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import com.google.common.io.Resources
 import kotlinx.android.synthetic.main.recycler_view_model.view.*
 
 class LeadAdapter(options: FirestoreRecyclerOptions<LeadModel>) :
@@ -27,6 +30,11 @@ class LeadAdapter(options: FirestoreRecyclerOptions<LeadModel>) :
         holder.leadEmail.text=model.SubmittedBy
         holder.leadTimestamp.text=model.TimestampSubmission
         holder.leadStatus.text=model.Status
+
+        if(model.Status=="Open")holder.leadStatus.setTextColor(getColor(mContext,R.color.open_green))
+        else if(model.Status=="Validated")holder.leadStatus.setTextColor(getColor(mContext,R.color.orange))
+        else if(model.Status=="Rejected")holder.leadStatus.setTextColor(getColor(mContext,R.color.rejected_red))
+        else if(model.Status=="Closed")holder.leadStatus.setTextColor(getColor(mContext,R.color.yellow))
 
         holder.itemView.setOnClickListener {
             val positionH=holder.adapterPosition

@@ -22,8 +22,8 @@
     <string name="submit_a_lead">Submit A Lead</string>
     <string name="lead_submission_form">Lead Submission Form</string>
     <string name="customer_name">Customer Name</string>
-    <string name="opportunity_details">Opportunity Details</string>
-    <string name="segment_details">Segment Details</string>
+    <string name="opportunity_details">Opportunity Details:</string>
+    <string name="segment_details">Segment Details:</string>
     <string name="value_of_lead_in">Value Of Lead (in $)</string>
     <string name="all_the_details_mentioned_above_about_the_lead_is_to_the_best_of_my_knowledge">All the details mentioned above about the lead is to the best of my knowledge.</string>
     <string name="lead_submitted_to">Lead Submitted To</string>
@@ -41,6 +41,14 @@
     <string name="current_status_">Current Status:</string>
     <string name="reject">Reject</string>
     <string name="validate">Validate</string>
-    <string name="submitted_on">Submitted On</string>
+    <string name="submitted_on">Submitted On:</string>
     <string name="timestamp">Timestamp</string>
+    <string name="mark_as_closed">Mark As Closed</string>
+    <string name="validated_on">Validated On:</string>
+    <string name="rejected_on">Rejected On:</string>
+    <string name="closed_on">Closed On:</string>
+    <string name="no_leads_assigned_yet">No Leads Assigned Yet!</string>
+    <string name="lead_review">Lead Review</string>
+    <string name="value_of_lead">Value of Lead:</string>
+    <string name="details_about_the_lead">Details about the lead</string>
 </resources>
