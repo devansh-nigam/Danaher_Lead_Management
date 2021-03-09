@@ -241,6 +241,7 @@ class RegisterActivity : AppCompatActivity() {
             }
             else{
                 progressBar.isVisible=true
+                binding.register.isClickable=false
                 mAuth.createUserWithEmailAndPassword(email,pass1).
                         addOnCompleteListener({task->
                             if(task.isSuccessful){
@@ -263,8 +264,12 @@ class RegisterActivity : AppCompatActivity() {
                                             Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                         startActivity(intent)
                                         finish()
+                                    }.addOnFailureListener {
+                                        binding.register.isClickable=true
+                                        Toast.makeText(this,"${it.message}",Toast.LENGTH_LONG).show()
                                     }
                             }else{
+                                binding.register.isClickable=true
                                 Toast.makeText(this,"${task.exception!!.message}",Toast.LENGTH_LONG).show()
                                 binding.progressBar.isVisible=false
                             }

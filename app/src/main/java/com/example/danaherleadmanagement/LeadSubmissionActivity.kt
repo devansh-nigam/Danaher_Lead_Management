@@ -122,14 +122,6 @@ class LeadSubmissionActivity : AppCompatActivity() {
                 val snack = Snackbar.make(it,"Please Enter Valid Full Name", Snackbar.LENGTH_LONG)
                 snack.show()
             }
-            else if(flagEmail==1){
-                val snack = Snackbar.make(it,"Please Enter Email For Whom This Lead Is Assigned", Snackbar.LENGTH_LONG)
-                snack.show()
-            }
-            else if(flagEmailValidate==1){
-                val snack = Snackbar.make(it,"Please Enter A Valid Email", Snackbar.LENGTH_LONG)
-                snack.show()
-            }
             else if(flagOpportunity==1){
                 val snack = Snackbar.make(it,"Please Enter Opportunity Details", Snackbar.LENGTH_LONG)
                 snack.show()
@@ -142,13 +134,21 @@ class LeadSubmissionActivity : AppCompatActivity() {
                 val snack = Snackbar.make(it,"Please Enter Value Of Lead in $", Snackbar.LENGTH_LONG)
                 snack.show()
             }
+            else if(flagEmail==1){
+                val snack = Snackbar.make(it,"Please Enter Email For Whom This Lead Is Assigned", Snackbar.LENGTH_LONG)
+                snack.show()
+            }
+            else if(flagEmailValidate==1){
+                val snack = Snackbar.make(it,"Please Enter A Valid Email", Snackbar.LENGTH_LONG)
+                snack.show()
+            }
             else if(flagCheck==1){
                 val snack = Snackbar.make(it,"Please Check The Undertaking", Snackbar.LENGTH_LONG)
                 snack.show()
             }
             else{
                 progressBar.isVisible=true
-
+                binding.submit.isClickable=false
 
 
                 val now=Timestamp.now()
@@ -180,11 +180,13 @@ class LeadSubmissionActivity : AppCompatActivity() {
                                 finish()
                             }.addOnFailureListener {
                                 Toast.makeText(this,"${it.message}",Toast.LENGTH_LONG).show()
+                                binding.submit.isClickable=true
                                 progressBar.isVisible=false
                             }
                     }.addOnFailureListener {
                         Toast.makeText(this,"${it.message}",Toast.LENGTH_LONG).show()
                         progressBar.isVisible=false
+                        binding.submit.isClickable=true
                     }
             }
 

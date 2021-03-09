@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:background="#04448C"
+    android:orientation="vertical">
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".RegisterActivity"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:src="@drawable/danaherlogo" />
+
+        <TextView
+            android:id="@+id/t"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Lead Review"
+            android:layout_marginTop="30dp"
+            android:textSize="26sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/latobold"/>
+
+
+    <LinearLayout
+        android:id="@+id/impButtons"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/reject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/reject"
+            android:layout_margin="3dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/latobold"
+            android:background="@color/rejected_red"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/validate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/validate"
+            android:layout_margin="3dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/latobold"
+            android:background="@color/orange"/>
+
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/qwe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latolight"
+                android:textSize="16sp"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:text="@string/customer_name_" />
+
+            <TextView
+                android:id="@+id/cus_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latolight"
+                android:textSize="16sp"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:text="@string/full_name" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/ls"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latolight"
+                android:textSize="16sp"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:text="@string/lead_submitted_by" />
+
+            <TextView
+                android:id="@+id/Email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latolight"
+                android:textSize="12sp"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:text="@string/full_name" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/s"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latolight"
+                android:textSize="16sp"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:text="@string/current_status_" />
+
+            <TextView
+                android:id="@+id/statusOfLead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latobold"
+                android:textSize="16sp"
+                android:padding="4dp"
+                android:textColor="@color/open_green"
+                android:text="@string/open" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/sub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latolight"
+                android:textSize="16sp"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:text="@string/submitted_on" />
+
+            <TextView
+                android:id="@+id/submittedOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latobold"
+                android:textSize="12sp"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:text="@string/timestamp" />
+
+        </LinearLayout>
+
+        
+
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/vale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/latolight"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            android:text="@string/value_of_lead_in" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/valuee"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/latolight"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            android:text="$ 237.29" />
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/op"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/latolight"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            android:text="@string/opportunity_details" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/opp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/latolight"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            android:text="Details about the lead" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/se"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/latolight"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            android:text="@string/segment_details" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/seg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/latolight"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            android:text="Details about the lead" />
+
+
+
+    </LinearLayout>
+</ScrollView>

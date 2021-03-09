@@ -13,11 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DanaherLeadManagement"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LeadSubmissionActivity"></activity>
+        <activity android:name=".LeadReviewActivity"></activity>
+        <activity android:name=".ForgotPasswordActivity" />
+        <activity android:name=".LeadSubmissionActivity" />
         <activity
             android:name=".RegisterActivity"
             android:label="RegisterActivity"
-            android:theme="@style/Theme.DanaherLeadManagement.NoActionBar"></activity>
+            android:theme="@style/Theme.DanaherLeadManagement.NoActionBar" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

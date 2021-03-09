@@ -13,4 +13,7 @@
     <color name="orange">#DC6016</color>
     <color name="yellow">#D89B2B</color>
     <color name="lime_green">#035D67</color>
+
+    <color name="open_green">#7AC74F</color>
+    <color name="rejected_red">#DD403A</color>
 </resources>

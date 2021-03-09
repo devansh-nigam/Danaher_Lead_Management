@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.text.Editable
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.widget.Toast
@@ -36,7 +37,6 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
-
         var email=""
         var pass=""
         var flagEmail=1
@@ -53,6 +53,11 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
             finish()
+        }
+
+        binding.forgot.setOnClickListener {
+            val intent=Intent(this@LoginActivity,ForgotPasswordActivity::class.java)
+            startActivity(intent)
         }
 
         binding.login.setOnClickListener {
@@ -93,6 +98,7 @@ class LoginActivity : AppCompatActivity() {
                  snack.show()
              }
             else{
+                binding.login.isClickable=false
                 mAuth.signInWithEmailAndPassword(email,pass).
                         addOnCompleteListener(
                                 {
@@ -104,6 +110,7 @@ class LoginActivity : AppCompatActivity() {
                                     }else{
                                         binding.progressBar.isVisible=false
                                         Toast.makeText(this,"${task.exception!!.message}",Toast.LENGTH_LONG).show()
+                                        binding.login.isClickable=true
                                     }
                                 }
                         )

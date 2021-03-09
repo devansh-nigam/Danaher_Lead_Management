@@ -33,4 +33,14 @@
     <string name="submitted_by">Submitted By:</string>
     <string name="email_address">Email Address</string>
     <string name="status">Status</string>
+    <string name="reset_my_password">Reset My Password</string>
+    <string name="back_to_login">Back To Login</string>
+    <string name="reset_your_password">Reset Your Password</string>
+    <string name="customer_name_">Customer Name:</string>
+    <string name="open">Open</string>
+    <string name="current_status_">Current Status:</string>
+    <string name="reject">Reject</string>
+    <string name="validate">Validate</string>
+    <string name="submitted_on">Submitted On</string>
+    <string name="timestamp">Timestamp</string>
 </resources>

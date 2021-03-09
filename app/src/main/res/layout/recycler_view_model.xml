@@ -89,7 +89,7 @@
                 android:fontFamily="@font/latobold"
                 android:textSize="12sp"
                 android:padding="4dp"
-                android:textColor="@android:color/holo_green_light"
+                android:textColor="@color/open_green"
                 android:text="Open" />
 
         </LinearLayout>
