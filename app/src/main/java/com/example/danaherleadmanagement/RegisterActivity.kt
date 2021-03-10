@@ -294,7 +294,7 @@ class RegisterActivity : AppCompatActivity() {
         var digit = false
         var special = false
 
-        if(pass1.length<8)return 1
+        if(pass1.length<6)return 1
 
         for(i in pass1){
             if(i.isDigit())digit=true

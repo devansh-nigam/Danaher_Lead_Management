@@ -4,7 +4,7 @@
     <string name="full_name">Full Name</string>
     <string name="enterprise_email">Enterprise Email</string>
     <string name="i_am_a_current_employee_of_the_above_mentioned_danaher_operating_company_and_i_have_read_and_agreed_to_terms_of_use_of_danaher_corp">I am a current employee of the above mentioned Danaher Operating Company and I have read and agreed to Terms of Use of Danaher Corp.</string>
-    <string name="your_password_must_be_atleast_8_characters_with_atleast_1_number_and_1_special_character">Your password must be at least 8 characters.<br /> With at least 1 number and 1 special character</string>
+    <string name="your_password_must_be_atleast_6_characters_with_atleast_1_number_and_1_special_character">Your password must be at least 6 characters.<br /> With at least 1 number and 1 special character</string>
     <string name="password">Password</string>
     <string name="show_password">Show Password</string>
     <string name="sign_me_up">Sign Me Up!</string>

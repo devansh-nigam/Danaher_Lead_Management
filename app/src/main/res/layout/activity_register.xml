@@ -131,7 +131,7 @@
             android:id="@+id/warning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/your_password_must_be_atleast_8_characters_with_atleast_1_number_and_1_special_character"
+            android:text="@string/your_password_must_be_atleast_6_characters_with_atleast_1_number_and_1_special_character"
             android:textColor="@color/orange"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/latolight" />
