@@ -23,7 +23,8 @@ class ForgotPasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityForgotPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.hide()
+        supportActionBar!!.title="Forgot Password"
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         mAuth= FirebaseAuth.getInstance()
         binding.progressBar.isVisible=false
         var email=""

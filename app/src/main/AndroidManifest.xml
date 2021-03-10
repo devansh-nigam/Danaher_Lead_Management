@@ -18,7 +18,7 @@
             android:name=".AssignedLeadsDashboardActivity"
             android:label="Assigned Dashboard" />
         <activity android:name=".LeadReviewActivity" android:parentActivityName=".DashboardActivity"/>
-        <activity android:name=".ForgotPasswordActivity" />
+        <activity android:name=".ForgotPasswordActivity" android:parentActivityName=".LoginActivity"/>
         <activity android:name=".LeadSubmissionActivity" android:parentActivityName=".DashboardActivity"/>
         <activity
             android:name=".RegisterActivity"
