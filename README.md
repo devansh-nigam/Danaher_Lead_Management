@@ -35,7 +35,7 @@ All big business corporations must have faced this problem where they don't have
 ### Native Mobile App 
 - Kotlin
 
-### Guided Tour Of App 
+### ✔ Guided Tour Of App 
 
 #### Register, Login & Forgot Password Activities
 
@@ -49,6 +49,13 @@ Login             |  Register | Forgot Password
 Segment Selection             |  Spinner In Action | Company Selection
 :-------------------------:|:-------------------------:|:-------------------------:
 ![Segment](/app-screenshots/segment.png)  |  ![Register](/app-screenshots/segmentss.gif) | ![ForgotPassword](/app-screenshots/Screenshot_1615398241.png)
+
+#### Dashboard, Assigned & Submitted Lead Activities
+
+Dashboard             |  Assigned Leads | Submitted Leads
+:-------------------------:|:-------------------------:|:-------------------------:
+![Login](/app-screenshots/Dashboard.png)  |  ![Register](/app-screenshots/Register.png) | ![ForgotPassword](/app-screenshots/ForgotPassword.png)
+
 
 
 The apk for the android application is provided in the /app/release/ section of the github repository. 
