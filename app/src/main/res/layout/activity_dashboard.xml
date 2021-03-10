@@ -59,6 +59,36 @@
             android:padding="5dp">
         </androidx.recyclerview.widget.RecyclerView>
 
+        <TextView
+            android:id="@+id/viewAllAssigned"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="@string/view_all"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/latoregular"/>
+
+
+
+        <ImageView
+            android:id="@+id/noAssignedImg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_noleads" />
+
+        <TextView
+            android:id="@+id/noAssignedTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/latolight"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:padding="2dp"
+            android:textColor="@color/white"
+            android:text="@string/no_leads_assigned_yet" />
 
         <TextView
             android:id="@+id/ls"
@@ -66,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/submitted_leads"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="45dp"
             android:layout_marginBottom="20dp"
             android:textSize="26sp"
             android:textColor="@color/white"
@@ -81,6 +111,23 @@
             android:layout_marginTop="5dp"
             android:padding="5dp">
         </androidx.recyclerview.widget.RecyclerView>
+
+        <ImageView
+            android:id="@+id/noSubmittedImg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_leadsubmit" />
+
+        <TextView
+            android:id="@+id/noSubmittedTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/latolight"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:padding="2dp"
+            android:textColor="@color/white"
+            android:text="@string/no_leads_assigned_yet" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/submitLead"

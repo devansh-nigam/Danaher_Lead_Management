@@ -13,10 +13,12 @@ import com.example.danaherleadmanagement.databinding.ActivityLeadSubmissionBindi
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.firestoreSettings
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
+import java.lang.Exception
 import java.security.MessageDigest
 import java.util.regex.Pattern
 
@@ -53,6 +55,7 @@ class LeadSubmissionActivity : AppCompatActivity() {
         var flagSegment=1
         var flagValue=1
         var flagCheck=1
+        var sameEmail=1
 
         val currentUser=mAuth.currentUser
         binding.emailOfSender.text=currentUser.email
@@ -61,6 +64,11 @@ class LeadSubmissionActivity : AppCompatActivity() {
         binding.checkBox.setOnClickListener {
             if(binding.checkBox.isChecked)flagCheck=0
             else flagCheck=1
+        }
+
+
+        binding.check.setOnClickListener {
+            checkForExistingUser(db,email)
         }
 
         binding.submit.setOnClickListener {
@@ -89,6 +97,11 @@ class LeadSubmissionActivity : AppCompatActivity() {
             else {
                 flagEmail = 0
                 flagEmailValidate=EmailValidator(email)
+                if(flagEmailValidate==0){
+                    if(currentUser.email==email){
+                        sameEmail=1
+                    }else sameEmail=0
+                }
             }
 
             opportunity=binding.opportunity.text.toString().trim()
@@ -142,6 +155,10 @@ class LeadSubmissionActivity : AppCompatActivity() {
                 val snack = Snackbar.make(it,"Please Enter A Valid Email", Snackbar.LENGTH_LONG)
                 snack.show()
             }
+            else if(sameEmail==1){
+                val snack = Snackbar.make(it,"Oops! You Cannot Forward A Lead To Yourself!", Snackbar.LENGTH_LONG)
+                snack.show()
+            }
             else if(flagCheck==1){
                 val snack = Snackbar.make(it,"Please Check The Undertaking", Snackbar.LENGTH_LONG)
                 snack.show()
@@ -170,27 +187,56 @@ class LeadSubmissionActivity : AppCompatActivity() {
                     "Hash" to hash
                 )
 
-                //adding as assigned lead first
-                db.collection("Users").document(email).collection("Assigned Leads").document(hash).set(leadDetails)
-                    .addOnSuccessListener {
-                        db.collection("Users").document(currentUser.email!!).collection("Submitted Leads").document(hash).set(leadDetails)
+                var proceed=false
+
+                //checkForExistingUser(db,email)
+                //val q=db.collection("Users").document(email)
+//                db.collection("Users").document(email).get().addOnSuccessListener {
+//                    proceed=true
+//                }.addOnFailureListener {
+//                    Toast.makeText(this,"No such user exists",Toast.LENGTH_LONG).show()
+//                    proceed=false
+//                }
+
+                    //adding as assigned lead first
+                    db.collection("Users").document(email).collection("Assigned Leads").document(hash).set(leadDetails)
                             .addOnSuccessListener {
-                                Toast.makeText(this,"Lead Submitted Successfully!",Toast.LENGTH_LONG).show()
-                                val intent= Intent(this,DashboardActivity::class.java)
-                                startActivity(intent)
-                                finish()
+                                db.collection("Users").document(currentUser.email!!).collection("Submitted Leads").document(hash).set(leadDetails)
+                                        .addOnSuccessListener {
+
+                                            Toast.makeText(this,"Lead Submitted Successfully!",Toast.LENGTH_LONG).show()
+                                            val intent= Intent(this,DashboardActivity::class.java)
+                                            startActivity(intent)
+                                            finish()
+                                        }.addOnFailureListener {
+                                            Toast.makeText(this,"${it.message}",Toast.LENGTH_LONG).show()
+                                            binding.submit.isClickable=true
+                                            progressBar.isVisible=false
+                                        }
                             }.addOnFailureListener {
                                 Toast.makeText(this,"${it.message}",Toast.LENGTH_LONG).show()
-                                binding.submit.isClickable=true
                                 progressBar.isVisible=false
+                                binding.submit.isClickable=true
                             }
-                    }.addOnFailureListener {
-                        Toast.makeText(this,"${it.message}",Toast.LENGTH_LONG).show()
-                        progressBar.isVisible=false
-                        binding.submit.isClickable=true
-                    }
+
             }
 
+        }
+    }
+
+    private fun checkForExistingUser(db: FirebaseFirestore, email: String) {
+        db.collection("Upcoming Events").orderBy("Event Date").get().addOnSuccessListener{
+            var x=0
+            var size=it.documents.size
+            var docs:String=""
+            var titles:String=""
+            while(x<=(size-1)) {
+                docs+= it.documents[x].data.toString()+"\n\n"
+                titles+=it.documents[x].data?.get("Event Title").toString()
+                x++
+            }
+
+           //binding.list.text
         }
     }
 

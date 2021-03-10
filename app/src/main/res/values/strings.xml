@@ -37,7 +37,6 @@
     <string name="back_to_login">Back To Login</string>
     <string name="reset_your_password">Reset Your Password</string>
     <string name="customer_name_">Customer Name:</string>
-    <string name="open">Open</string>
     <string name="current_status_">Current Status:</string>
     <string name="reject">Reject</string>
     <string name="validate">Validate</string>
@@ -51,4 +50,10 @@
     <string name="lead_review">Lead Review</string>
     <string name="value_of_lead">Value of Lead:</string>
     <string name="details_about_the_lead">Details about the lead</string>
+    <string name="this_lead_is_assigned_to_you_by">This Lead Is Assigned To You By</string>
+    <string name="view_all">View All</string>
+    <string name="rejected">Rejected</string>
+    <string name="closed">Closed</string>
+    <string name="validated">Validated</string>
+    <string name="open">Open</string>
 </resources>

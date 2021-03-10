@@ -123,35 +123,6 @@
             android:padding="4dp">
 
             <TextView
-                android:id="@+id/ls"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/latolight"
-                android:textSize="16sp"
-                android:padding="4dp"
-                android:textColor="@color/white"
-                android:text="@string/lead_submitted_by" />
-
-            <TextView
-                android:id="@+id/Email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/latolight"
-                android:textSize="12sp"
-                android:padding="4dp"
-                android:textColor="@color/white"
-                android:text="@string/full_name" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="4dp">
-
-            <TextView
                 android:id="@+id/s"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -388,6 +359,20 @@
 
     </LinearLayout>
 
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/latolight"
+            android:textSize="16sp"
+            android:layout_gravity="center_horizontal"
+            android:padding="4dp"
+            android:textColor="@color/white"
+            android:text="@string/this_lead_is_assigned_to_you_by" />
+
+        <include layout="@layout/card"
+            android:id="@+id/card_view_personal_lead" />
 
 
 

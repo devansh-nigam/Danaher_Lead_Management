@@ -18,6 +18,8 @@ import com.example.danaherleadmanagement.databinding.ActivityDashboardBinding
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.firestoreSettings
 import com.google.firebase.ktx.Firebase
@@ -48,9 +50,11 @@ class DashboardActivity : AppCompatActivity() {
 
         db.firestoreSettings = settings
 
-
+        //checkForNoAssignedLeads(db)
         setUpRecyclerViewForAssignedLeads()
+        //checkForNoSubmittedLeads(db)
         setUpRecyclerViewForSubmittedLeads()
+
 
         var full_name=""
         var domain=""
@@ -77,7 +81,10 @@ class DashboardActivity : AppCompatActivity() {
         binding.cardViewPersonal.userEmail.text=user.email
 
 
-
+        binding.viewAllAssigned.setOnClickListener {
+            val intent=Intent(this,AssignedLeadsDashboardActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.submitLead.setOnClickListener {
             val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
@@ -97,6 +104,32 @@ class DashboardActivity : AppCompatActivity() {
         }
     }
 
+//    private fun checkForNoAssignedLeads(db:FirebaseFirestore) {
+//        val query:CollectionReference?=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+//
+//        if(query==null){
+//            binding.noAssignedImg.isVisible=true
+//            binding.noAssignedTxt.isVisible=true
+//        }
+//        else{
+//            binding.noAssignedImg.isVisible=false
+//            binding.noAssignedTxt.isVisible=false
+//        }
+//    }
+//
+//    private fun checkForNoSubmittedLeads(db:FirebaseFirestore) {
+//        val query:CollectionReference?=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Submitted Leads")
+//
+//        if(query==null){
+//            binding.noSubmittedImg.isVisible=true
+//            binding.noSubmittedTxt.isVisible=true
+//        }
+//        else{
+//            binding.noSubmittedImg.isVisible=false
+//            binding.noSubmittedTxt.isVisible=false
+//        }
+//    }
+
     private fun setUpRecyclerViewForSubmittedLeads() {
         val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Submitted Leads")//.orderBy("TimestampSubmission")
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<LeadModel> = FirestoreRecyclerOptions.Builder<LeadModel>().
@@ -111,7 +144,7 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun setUpRecyclerViewForAssignedLeads() {
-        val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")//.orderBy("TimestampSubmission")
+        val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<LeadModel> = FirestoreRecyclerOptions.Builder<LeadModel>().
         setQuery(query,LeadModel::class.java).build()
 
@@ -151,14 +184,18 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        //checkForNoAssignedLeads(db)
         assignedLeadAdapter!!.startListening()
+        //checkForNoSubmittedLeads(db)
         submittedLeadAdapter!!.startListening()
         //pastEventAdapter!!.startListening()
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        //checkForNoAssignedLeads(db)
         assignedLeadAdapter!!.stopListening()
+        //checkForNoSubmittedLeads(db)
         submittedLeadAdapter!!.stopListening()
        // pastEventAdapter!!.stopListening()
     }

@@ -51,7 +51,12 @@ class LeadReviewActivity : AppCompatActivity() {
         val hash=intent.getStringExtra("Hash")
 
         binding.cusName.text=Name
-        binding.Email.text=SubmittedBy
+        //binding.Email.text=SubmittedBy
+        binding.cardViewPersonalLead.userEmail.text=SubmittedBy
+
+        //db.collection("Users").document(SubmittedBy).collection("Account Ifno")
+
+
         binding.statusOfLead.text=status
 
         binding.validation.isVisible=false

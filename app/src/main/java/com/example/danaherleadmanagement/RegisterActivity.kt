@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import com.example.danaherleadmanagement.databinding.ActivityRegisterBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.ktx.firestore
@@ -254,7 +255,8 @@ class RegisterActivity : AppCompatActivity() {
                                     "Email" to "${user.email}",
                                     "Domain" to domain,
                                     "OpCo" to operatingCompany,
-                                    "UID" to user.uid)
+                                    "UID" to user.uid,
+                                    "TimestampRegistration" to Timestamp.now().toDate().toString())
 
                                 db.collection("Users").document(user.email).collection("Account Info").document("Details").set(userDetails)
                                     .addOnCompleteListener {

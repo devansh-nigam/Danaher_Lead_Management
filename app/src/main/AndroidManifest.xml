@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DanaherLeadManagement"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LeadReviewActivity"></activity>
+        <activity android:name=".AssignedLeadsDashboardActivity" android:label="Assigned Dashboard"></activity>
+        <activity android:name=".LeadReviewActivity" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".LeadSubmissionActivity" />
         <activity

@@ -198,6 +198,16 @@
             android:fontFamily="@font/latobold"
             android:background="@color/light_blue"/>
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Check For User"
+            android:textColor="@color/white"
+            android:fontFamily="@font/latobold"
+            android:background="@color/light_blue"/>
+
         <ProgressBar
             android:layout_gravity="center_horizontal"
             android:id="@+id/progressBar"
@@ -207,6 +217,19 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/progress"
             />
+
+
+        <TextView
+            android:id="@+id/list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/lead_management"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="26sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/latobold"/>
 
     </LinearLayout>
 
