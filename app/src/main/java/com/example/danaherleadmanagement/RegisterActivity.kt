@@ -243,7 +243,7 @@ class RegisterActivity : AppCompatActivity() {
                 val snack = Snackbar.make(it,"Passwords don't match, Please Try Again",Snackbar.LENGTH_LONG)
                 snack.show()
             }
-            else if(flagCheck==1){
+            else if(flagPassValidate==0 && flagPass2==0 && flagCheck==1){
                 val snack = Snackbar.make(it,"Please Agree To The Terms",Snackbar.LENGTH_LONG)
                 snack.show()
             }
