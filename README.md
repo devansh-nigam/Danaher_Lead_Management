@@ -28,7 +28,7 @@ All big business corporations must have faced this problem where they don't have
 - XML 
 - Firebase Firestore Recycler
 
-### Back End  ( Hosted on Google Firebase ):
+#### Back End  ( Hosted on Google Firebase ):
 - Firebase Firestore
 - Firebase Authentication
 
@@ -37,4 +37,7 @@ All big business corporations must have faced this problem where they don't have
 
 ### Guided Tour Of App 
 
+#### Register, Login & Forgot Password Activities
+
+![Login](/app-screenshots/Login.png) ![Register](/app-screenshots/Register.png) ![ForgotPassword](/app-screenshots/ForgotPassword.png)
 The apk for the android application is provided in the release section of the github repository. 
