@@ -6,7 +6,7 @@ Bulit Under  "CorpComp Challenge" for TechFest 20-21
 
 The app is deployed on Google Firebase. A separate business email id : danaherlead@gmail.com has been made to manage the server operations at Firebase. It has been made, keeping in mind that this project will be transferred to Danaher Corporation.
 
-##### ✔ Description  of the problem
+### ✔ Description  of the problem
 All big business corporations must have faced this problem where they don't have a centralized system of forwarding leads withing their business associates. This app is specifically made for the well-known Danaher Global Corporation keeping in mind the gravity of this problem.
 
 ### ✔  And Here's the solution for the above stated problem
