@@ -35,4 +35,6 @@ All big business corporations must have faced this problem where they don't have
 ### Native Mobile App 
 - Kotlin
 
+### Guided Tour Of App 
+
 The apk for the android application is provided in the release section of the github repository. 
