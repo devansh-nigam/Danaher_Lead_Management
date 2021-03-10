@@ -50,15 +50,18 @@ Segment Selection             |  Spinner In Action | Company Selection
 :-------------------------:|:-------------------------:|:-------------------------:
 ![Segment](/app-screenshots/segment.png)  |  ![Register](/app-screenshots/segmentss.gif) | ![ForgotPassword](/app-screenshots/Screenshot_1615398241.png)
 
+
 #### Dashboard, Assigned & Submitted Lead Activities
 
 Dashboard             |  Leads Display | Lead Review
 :-------------------------:|:-------------------------:|:-------------------------:
-![Login](/app-screenshots/Dashboard.png)  |  ![Register](/app-screenshots/Leads.png) | ![ForgotPassword](/app-screenshots/LeadReview.png)
+![Dashboard](/app-screenshots/Dashboard.png)  |  ![Lead Display](/app-screenshots/Leads.png) | ![Lead Review](/app-screenshots/LeadReview.png)
 
 Lead Details            |  Lead Validation | Lead Closure
 :-------------------------:|:-------------------------:|:-------------------------:
-![Login](/app-screenshots/LeadDetails.png)  |  ![Register](/app-screenshots/Validation.png) | ![ForgotPassword](/app-screenshots/Closure.png)
+![Lead Details](/app-screenshots/LeadDetails.png)  |  ![Lead Validation](/app-screenshots/Validation.png) | ![Lead Closure](/app-screenshots/Closure.png)
+
+#### Filter Leads On The Basis of Status
 
 
 
