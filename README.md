@@ -43,4 +43,19 @@ Login             |  Register | Forgot Password
 :-------------------------:|:-------------------------:|:-------------------------:
 ![Login](/app-screenshots/Login.png)  |  ![Register](/app-screenshots/Register.png) | ![ForgotPassword](/app-screenshots/ForgotPassword.png)
 
+- Care has been taken so that no one can bypass the authenication easily. 
+- Also, Users's Segment and Exact company is taken as a input by the help of a spinner instead of a text field to increase security.
+
+Login             |  Register | Forgot Password
+:-------------------------:|:-------------------------:|:-------------------------:
+![Login](/app-screenshots/Login.png)  |  ![Register](/app-screenshots/Register.png) | ![ForgotPassword](/app-screenshots/ForgotPassword.png)
+
+
+#### Register, Login & Forgot Password Activities
+
+Login             |  Register | Forgot Password
+:-------------------------:|:-------------------------:|:-------------------------:
+![Login](/app-screenshots/Login.png)  |  ![Register](/app-screenshots/Register.png) | ![ForgotPassword](/app-screenshots/ForgotPassword.png)
+
+
 The apk for the android application is provided in the /app/release/ section of the github repository. 
