@@ -5,9 +5,10 @@ Bulit Under  "CorpComp Challenge" for TechFest 20-21
 The app is deployed on Google Firebase. A separate business email id : danaherlead@gmail.com has been made to manage the server operations at Firebase. It has been keeping in mind that this project will be transferred to Danaher Corporation.
 
 ##### ✔ Description  of the problem
- We all students have faced the time when we missed one or two classes due to which we are not able to cope-up with what's going on in the class. Moreover these backlogs keeps getting added and when the D-day (exams) comes we find ourselves in a miserable situation where we know the syllabus but we are actuallly wasting most of our valuable time watching number of youtube videos to understand a simple topic or calling the freind who promised to teach that topic at the end but not picking up 😒.
-### ✔  And Here's the solution for everything stated above 
-**UNIV** enables "peer to peeer teaching" which in short means that any student can teach one or many students through  **Google Meet** while being moderated by the institute in exchange of **credits** which  could be redeemed as and when he wants in college campus food stalls or during college fests . Adding to this  a student can create online discussion grps where a number of students can join , discuss topic among themselves or with a teacher and get there doubts clear anytime. Any student can upload his notes  in exchange of credit when a student saves that "Note" . So , all in all this hack enables and motivates the student to help other students :)
+All big business corporations must have faced this problem where they don't have a centralized system of forwarding leads withing their business associates. This app is specifically made for the well-known Danaher Global Corporation keeping in mind the gravity of this problem.
+
+### ✔  And Here's the solution for the above stated problem
+**Danaher Lead** enables transfers of lead within the system very quickly, with just few touch on your moblie screen and you have submitted a valuable asset to your organisation. Though, some features are yet to be implemented, I think that this is a very amazing start for the app.
 
 ### ✔  So here's how it actually works 📱:
 - The Employee creates his/her account on the **Moblie App** with all the required details (email and company included)
