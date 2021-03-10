@@ -46,7 +46,7 @@ Login             |  Register | Forgot Password
 - Care has been taken so that no one can bypass the authenication easily. 
 - Also, Users's Segment and Exact company is taken as a input by the help of a spinner instead of a text field to increase security.
 
-Segment Selection             |  Spinner In Action | Company Section
+Segment Selection             |  Spinner In Action | Company Selection
 :-------------------------:|:-------------------------:|:-------------------------:
 ![Segment](/app-screenshots/segment.png)  |  ![Register](/app-screenshots/segmentss.gif) | ![ForgotPassword](/app-screenshots/Screenshot_1615398241.png)
 
