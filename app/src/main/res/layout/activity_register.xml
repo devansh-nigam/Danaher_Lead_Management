@@ -178,8 +178,20 @@
             android:background="@color/light_blue"/>
 
 
+        <TextView
+            android:layout_marginStart="5dp"
+            android:id="@+id/toTerms"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:textColor="@color/yellow"
+            android:fontFamily="@font/latobold"
+            android:text="Terms Of Use" />
+
+
         <LinearLayout
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">

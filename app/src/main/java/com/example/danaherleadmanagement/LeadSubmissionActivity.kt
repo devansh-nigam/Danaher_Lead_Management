@@ -67,11 +67,6 @@ class LeadSubmissionActivity : AppCompatActivity() {
             else flagCheck=1
         }
 
-
-        binding.check.setOnClickListener {
-            checkForExistingUser(db,email)
-        }
-
         binding.submit.setOnClickListener {
             val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
             if (vibrator.hasVibrator()) { // Vibrator availability checking
@@ -187,14 +182,6 @@ class LeadSubmissionActivity : AppCompatActivity() {
                     "TimestampClosed" to "",
                     "Hash" to hash
                 )
-                //checkForExistingUser(db,email)
-                //val q=db.collection("Users").document(email)
-//                db.collection("Users").document(email).get().addOnSuccessListener {
-//                    proceed=true
-//                }.addOnFailureListener {
-//                    Toast.makeText(this,"No such user exists",Toast.LENGTH_LONG).show()
-//                    proceed=false
-//                }
 
                     //adding as assigned lead first
                     db.collection("Users").document(email).collection("Assigned Leads").document(hash).set(leadDetails)
@@ -220,9 +207,6 @@ class LeadSubmissionActivity : AppCompatActivity() {
             }
 
         }
-    }
-
-    private fun checkForExistingUser(db: FirebaseFirestore, email: String) {
     }
 
     private fun EmailValidator(email: String): Int {

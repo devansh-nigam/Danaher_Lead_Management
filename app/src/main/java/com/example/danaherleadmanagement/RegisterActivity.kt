@@ -32,7 +32,8 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.hide()
+
+        supportActionBar!!.setHomeButtonEnabled(true)
 
         val operatingSpinner = findViewById<Spinner>(R.id.spinnerOperating)
         operatingSpinner.isVisible=false
@@ -147,6 +148,12 @@ class RegisterActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
+        }
+
+        binding.toTerms.setOnClickListener {
+            val intent=Intent(this,WebActivity::class.java)
+            intent.putExtra("Title","Terms")
+            startActivity(intent)
         }
 
         binding.register.setOnClickListener{

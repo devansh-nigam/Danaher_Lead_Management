@@ -47,6 +47,12 @@ class DashboardActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         val user=mAuth.currentUser;
 
+        if(user==null){
+            val intent=Intent(this,RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         db.firestoreSettings = settings
 
         binding.noAssignedImg.isVisible=false
@@ -192,29 +198,20 @@ class DashboardActivity : AppCompatActivity() {
                 signOut(mAuth)
             }
             R.id.contact->{
-                db.collection("URL").document("Links").get().addOnSuccessListener {
-                    val url=it.data!!.get("Contact") as String?
                     val intent=Intent(this,WebActivity::class.java)
-                    intent.putExtra("url",url)
+                    intent.putExtra("Title","Contact")
                     startActivity(intent)
-                }
             }
             R.id.terms->{
-                db.collection("URL").document("Links").get().addOnSuccessListener {
-                    val url=it.data!!.get("Terms") as String?
                     val intent=Intent(this,WebActivity::class.java)
-                    intent.putExtra("url",url)
+                    intent.putExtra("Title","Terms")
                     startActivity(intent)
-                }
             }
             R.id.privacyPolicy->{
-                db.collection("URL").document("Links").get().addOnSuccessListener {
-                    val url=it.data!!.get("Privacy") as String?
                     val intent=Intent(this,WebActivity::class.java)
-                    intent.putExtra("url",url)
+                    intent.putExtra("Title","Privacy")
                     startActivity(intent)
                 }
-            }
         }
         return super.onOptionsItemSelected(item)
     }

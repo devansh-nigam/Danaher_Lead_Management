@@ -11,19 +11,19 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DanaherLeadManagement"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".WebActivity"></activity>
+        android:theme="@style/Theme.DanaherLeadManagement">
+        <activity android:name=".WebActivity" android:parentActivityName=".DashboardActivity"/>
         <activity
+            android:parentActivityName=".DashboardActivity"
             android:name=".AssignedLeadsDashboardActivity"
             android:label="Assigned Dashboard" />
-        <activity android:name=".LeadReviewActivity" />
+        <activity android:name=".LeadReviewActivity" android:parentActivityName=".DashboardActivity"/>
         <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".LeadSubmissionActivity" />
+        <activity android:name=".LeadSubmissionActivity" android:parentActivityName=".DashboardActivity"/>
         <activity
             android:name=".RegisterActivity"
-            android:label="RegisterActivity"
-            android:theme="@style/Theme.DanaherLeadManagement.NoActionBar" />
+            android:label="Register"
+            android:parentActivityName=".LoginActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

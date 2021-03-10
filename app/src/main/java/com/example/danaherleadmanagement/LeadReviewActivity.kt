@@ -50,6 +50,11 @@ class LeadReviewActivity : AppCompatActivity() {
         val status=intent.getStringExtra("Status")
         val hash=intent.getStringExtra("Hash")
 
+        //actionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setHomeButtonEnabled(true)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.subtitle=Name.toString()
+
         binding.cusName.text=Name
         //binding.Email.text=SubmittedBy
         binding.cardViewPersonalLead.userEmail.text=SubmittedBy
@@ -129,6 +134,7 @@ class LeadReviewActivity : AppCompatActivity() {
                 else if(domain=="Diagnostics"){
                     binding.cardViewPersonalLead.imageDomain.setImageResource(R.drawable.diagnostic)
                 }
+                binding.cardViewPersonalLead.textCompany.text=it.data!!.get("OpCo") as String?
             }
 
         binding.validate.setOnClickListener {
@@ -184,7 +190,7 @@ class LeadReviewActivity : AppCompatActivity() {
             val dialogBuilder = AlertDialog.Builder(this)
 
             // set message of alert dialog
-            dialogBuilder.setMessage("Do you want to reject this Lead?")
+            dialogBuilder.setMessage("Do you want to close this Lead?")
                     // if the dialog is cancelable
                     .setCancelable(true)
                     // positive button text and action
