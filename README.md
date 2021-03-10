@@ -39,5 +39,8 @@ All big business corporations must have faced this problem where they don't have
 
 #### Register, Login & Forgot Password Activities
 
-![Login](/app-screenshots/Login.png) ![Register](/app-screenshots/Register.png) ![ForgotPassword](/app-screenshots/ForgotPassword.png)
+Login             |  Register | Forgot Password
+:-------------------------:|:-------------------------:|:-------------------------:
+![Login](/app-screenshots/Login.png)  |  ![Register](/app-screenshots/Register.png) | ![ForgotPassword](/app-screenshots/ForgotPassword.png)
+
 The apk for the android application is provided in the release section of the github repository. 
