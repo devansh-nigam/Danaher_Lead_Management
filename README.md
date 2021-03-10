@@ -52,9 +52,13 @@ Segment Selection             |  Spinner In Action | Company Selection
 
 #### Dashboard, Assigned & Submitted Lead Activities
 
-Dashboard             |  Assigned Leads | Submitted Leads
+Dashboard             |  Leads Display | Lead Review
 :-------------------------:|:-------------------------:|:-------------------------:
 ![Login](/app-screenshots/Dashboard.png)  |  ![Register](/app-screenshots/Leads.png) | ![ForgotPassword](/app-screenshots/LeadReview.png)
+
+Lead Details            |  Lead Validation | Lead Closure
+:-------------------------:|:-------------------------:|:-------------------------:
+![Login](/app-screenshots/LeadDetails.png)  |  ![Register](/app-screenshots/Validation.png) | ![ForgotPassword](/app-screenshots/Closure.png)
 
 
 
