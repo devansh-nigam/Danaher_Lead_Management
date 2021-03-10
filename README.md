@@ -43,4 +43,4 @@ Login             |  Register | Forgot Password
 :-------------------------:|:-------------------------:|:-------------------------:
 ![Login](/app-screenshots/Login.png)  |  ![Register](/app-screenshots/Register.png) | ![ForgotPassword](/app-screenshots/ForgotPassword.png)
 
-The apk for the android application is provided in the /app/release section of the github repository. 
+The apk for the android application is provided in the /app/release/ section of the github repository. 
