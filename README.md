@@ -65,7 +65,7 @@ Lead Details            |  Lead Validation | Lead Closure
 
 Assigned Dashboard            |  Filter Through Status | Real-time Updation
 :-------------------------:|:-------------------------:|:-------------------------:
-![Lead Details](/app-screenshots/filter1.png)  |  ![Lead Validation](/app-screenshots/filter.gif) | ![Lead Closure](/app-screenshots/filter2.png)
+![Lead Details](/app-screenshots/filter1.png)  |  ![Lead Validation](/app-screenshots/filter.gif) | ![Lead Closure](/app-screenshots/filter3.png)
 
 
 
