@@ -54,7 +54,7 @@ Segment Selection             |  Spinner In Action | Company Selection
 
 Dashboard             |  Assigned Leads | Submitted Leads
 :-------------------------:|:-------------------------:|:-------------------------:
-![Login](/app-screenshots/Dashboard.png)  |  ![Register](/app-screenshots/Register.png) | ![ForgotPassword](/app-screenshots/ForgotPassword.png)
+![Login](/app-screenshots/Dashboard.png)  |  ![Register](/app-screenshots/Leads.png) | ![ForgotPassword](/app-screenshots/LeadReview.png)
 
 
 
