@@ -48,7 +48,7 @@ Login             |  Register | Forgot Password
 
 Segment Selection             |  Spinner In Action | Company Section
 :-------------------------:|:-------------------------:|:-------------------------:
-![Segment](/app-screenshots/Segment Selection.png)  |  ![Register](/app-screenshots/segmentss.gif) | ![ForgotPassword](/app-screenshots/Screenshot_1615398241.png)
+![Segment](/app-screenshots/segment.png)  |  ![Register](/app-screenshots/segmentss.gif) | ![ForgotPassword](/app-screenshots/Screenshot_1615398241.png)
 
 
 The apk for the android application is provided in the /app/release/ section of the github repository. 
