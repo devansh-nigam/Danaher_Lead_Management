@@ -163,7 +163,7 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun setUpRecyclerViewForSubmittedLeads() {
-        val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Submitted Leads")//.orderBy("TimestampSubmission")
+        val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Submitted Leads").orderBy("TimestampSubmission",Query.Direction.DESCENDING)
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<LeadModel> = FirestoreRecyclerOptions.Builder<LeadModel>().
         setQuery(query,LeadModel::class.java).build()
 
@@ -175,7 +175,7 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun setUpRecyclerViewForAssignedLeads() {
-        val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+        val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads").orderBy("TimestampSubmission",Query.Direction.DESCENDING)
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<LeadModel> = FirestoreRecyclerOptions.Builder<LeadModel>().
         setQuery(query,LeadModel::class.java).build()
 

@@ -39,7 +39,7 @@ class AssignedLeadsDashboardActivity : AppCompatActivity() {
             binding.las.text="Submitted Leads"
         }
 
-        val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
+        val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString()).orderBy("TimestampSubmission")
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<LeadModel> = FirestoreRecyclerOptions.Builder<LeadModel>().
         setQuery(query,LeadModel::class.java).build()
         assignedLeadAdapter= LeadAdapter(firestoreRecyclerOptions)
@@ -71,89 +71,76 @@ class AssignedLeadsDashboardActivity : AppCompatActivity() {
         var Validated=binding.validateCheck.isChecked
         var Closed=binding.closedCheck.isChecked
         var Rejected=binding.rejectedCheck.isChecked
-
+        var q:Query
+        query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString()).orderBy("TimestampSubmission",Query.Direction.DESCENDING)
         if(Open && Validated && Closed && !Rejected)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
-                .whereNotEqualTo("Status","Rejected")
+               q= query.whereNotEqualTo("Status","Rejected")
         }
         else if(Open && Validated && Rejected && !Closed)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
-                .whereNotEqualTo("Status","Closed")
+              q=  query.whereNotEqualTo("Status","Closed")
         }
         else if(Open && Closed && Rejected && !Validated)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
-                .whereNotEqualTo("Status","Validated")
+            q=query.whereNotEqualTo("Status","Validated")
         }
         else if(Validated && Closed && Rejected && !Open)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
-                .whereNotEqualTo("Status","Open")
+            q=query.whereNotEqualTo("Status","Open")
         }
         //2 at a time
         else if(Open && Validated && !Closed && !Rejected)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
-                .whereIn("Status", arrayListOf("Open","Validated"))
+            q=query.whereIn("Status", arrayListOf("Open","Validated"))
         }
 
         else if(Open && Closed && !Validated && !Rejected)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
-                .whereIn("Status", arrayListOf("Open","Closed"))
+            q=query.whereIn("Status", arrayListOf("Open","Closed"))
         }
         else if(Open && Rejected && !Validated && !Closed)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
-                .whereIn("Status", arrayListOf("Open","Rejected"))
+            q=query.whereIn("Status", arrayListOf("Open","Rejected"))
         }
 
         else if(Validated && Closed && !Open && !Rejected)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
-                .whereIn("Status", arrayListOf("Validated","Closed"))
+            q=query.whereIn("Status", arrayListOf("Validated","Closed"))
         }
 
         else if(Validated && Rejected && !Open && !Closed)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
-                .whereIn("Status", arrayListOf("Validated","Rejected"))
+            q=query.whereIn("Status", arrayListOf("Validated","Rejected"))
         }
 
         else if(Closed && Rejected && !Open && !Validated)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
-                .whereIn("Status", arrayListOf("Rejected","Closed"))
+            q=query.whereIn("Status", arrayListOf("Rejected","Closed"))
         }
         //1 at a time
         else if(Open && !Validated && !Closed && !Rejected)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
-                .whereEqualTo("Status","Open")
+            q=query.whereEqualTo("Status","Open")
         }
         else if(!Open && Validated && !Closed && !Rejected)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
-                .whereEqualTo("Status","Validated")
+            q=query.whereEqualTo("Status","Validated")
         }
         else if(!Open && !Validated && Closed && !Rejected)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
-                .whereEqualTo("Status","Closed")
+            q=query.whereEqualTo("Status","Closed")
         }
         else if(!Open && !Validated && !Closed && Rejected)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
-                .whereEqualTo("Status","Rejected")
+            q=query.whereEqualTo("Status","Rejected")
         }
         else{
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
+            q=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString()).orderBy("TimestampSubmission",Query.Direction.DESCENDING)
         }
 
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<LeadModel> = FirestoreRecyclerOptions.Builder<LeadModel>().
-        setQuery(query,LeadModel::class.java).build()
+        setQuery(q,LeadModel::class.java).build()
 
         assignedLeadAdapter= LeadAdapter(firestoreRecyclerOptions)
         layoutManager= LinearLayoutManager(this)
