@@ -76,9 +76,12 @@ class LeadReviewActivity : AppCompatActivity() {
         if(leadIs=="Submitted Leads"){
             binding.impButtons.isVisible=false
             binding.close.isVisible=false
+            binding.cardViewPersonalLead.root.isVisible=false
+            binding.toYou.isVisible=false
         }
         else if(leadIs=="Assigned Leads"){
             binding.close.isVisible=false
+
             if(status=="Validated"){
                 binding.impButtons.isVisible=false
                 binding.close.isVisible=true
@@ -111,6 +114,22 @@ class LeadReviewActivity : AppCompatActivity() {
                 }
 
         }
+
+
+        db.collection("Users").document(SubmittedBy.toString()).collection("Account Info").document("Details").get()
+            .addOnSuccessListener {
+                binding.cardViewPersonalLead.userName.text=it.data!!.get("Name") as String?
+                val domain=it.data!!.get("Domain") as String?
+                binding.cardViewPersonalLead.textDomain.text=domain
+                if(domain=="Life Sciences"){
+                    binding.cardViewPersonalLead.imageDomain.setImageResource(R.drawable.lab)
+                }else if(domain=="Environmental & Applied Solutions"){
+                    binding.cardViewPersonalLead.imageDomain.setImageResource(R.drawable.earth)
+                }
+                else if(domain=="Diagnostics"){
+                    binding.cardViewPersonalLead.imageDomain.setImageResource(R.drawable.diagnostic)
+                }
+            }
 
         binding.validate.setOnClickListener {
             val dialogBuilder = AlertDialog.Builder(this)

@@ -112,6 +112,18 @@
             android:padding="5dp">
         </androidx.recyclerview.widget.RecyclerView>
 
+        <TextView
+            android:id="@+id/viewAllSubmitted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="@string/view_all"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/latoregular"/>
+
         <ImageView
             android:id="@+id/noSubmittedImg"
             android:layout_width="match_parent"

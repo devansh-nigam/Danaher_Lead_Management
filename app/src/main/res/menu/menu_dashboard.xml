@@ -4,6 +4,10 @@
         android:title="@string/sign_out"
         />
 
+    <item android:id="@+id/contact"
+        android:title="@string/contact_us"
+        />
+
     <item android:id="@+id/terms"
         android:title="@string/terms_of_use"
         />

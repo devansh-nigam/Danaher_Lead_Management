@@ -20,12 +20,11 @@ class AssignedLeadsDashboardActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth;
     private var layoutManager: RecyclerView.LayoutManager?=null
     var assignedLeadAdapter:LeadAdapter?=null
-
+    var leads:String?=null
     val db = Firebase.firestore
     val settings = firestoreSettings {
         isPersistenceEnabled = true
     }
-    //private lateinit var query: Query
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +32,14 @@ class AssignedLeadsDashboardActivity : AppCompatActivity() {
         setContentView(binding.root)
         mAuth = FirebaseAuth.getInstance()
 
+        supportActionBar!!.hide()
 
-        val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+        leads=intent.getStringExtra("Leads")
+        if(leads=="Submitted Leads"){
+            binding.las.text="Submitted Leads"
+        }
+
+        val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<LeadModel> = FirestoreRecyclerOptions.Builder<LeadModel>().
         setQuery(query,LeadModel::class.java).build()
         assignedLeadAdapter= LeadAdapter(firestoreRecyclerOptions)
@@ -56,7 +61,6 @@ class AssignedLeadsDashboardActivity : AppCompatActivity() {
             checkCheckBoxes()
         }
         checkCheckBoxes()
-        //setUpRecyclerViewForAssignedLeads()
     }
 
     private fun checkCheckBoxes()
@@ -67,103 +71,85 @@ class AssignedLeadsDashboardActivity : AppCompatActivity() {
         var Validated=binding.validateCheck.isChecked
         var Closed=binding.closedCheck.isChecked
         var Rejected=binding.rejectedCheck.isChecked
-        
-//        if(Open && Validated && Closed && Rejected){
-//            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
-//            //Toast.makeText(this,"Open=$Open\nValidated=$Validated\nClosed=$Closed\nRejected=$Rejected",Toast.LENGTH_LONG).show()
-//        }
+
         if(Open && Validated && Closed && !Rejected)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
                 .whereNotEqualTo("Status","Rejected")
-            //Toast.makeText(this,"Open=$Open\nValidated=$Validated\nClosed=$Closed\nRejected=$Rejected",Toast.LENGTH_LONG).show()
         }
         else if(Open && Validated && Rejected && !Closed)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
                 .whereNotEqualTo("Status","Closed")
-            //Toast.makeText(this,"Open=$Open\nValidated=$Validated\nClosed=$Closed\nRejected=$Rejected",Toast.LENGTH_LONG).show()
         }
         else if(Open && Closed && Rejected && !Validated)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
                 .whereNotEqualTo("Status","Validated")
-            //Toast.makeText(this,"Open=$Open\nValidated=$Validated\nClosed=$Closed\nRejected=$Rejected",Toast.LENGTH_LONG).show()
         }
         else if(Validated && Closed && Rejected && !Open)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
                 .whereNotEqualTo("Status","Open")
         }
         //2 at a time
         else if(Open && Validated && !Closed && !Rejected)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
                 .whereIn("Status", arrayListOf("Open","Validated"))
-            //Toast.makeText(this,"Open=$Open\nValidated=$Validated\nClosed=$Closed\nRejected=$Rejected",Toast.LENGTH_LONG).show()
         }
 
         else if(Open && Closed && !Validated && !Rejected)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
                 .whereIn("Status", arrayListOf("Open","Closed"))
-            //Toast.makeText(this,"Open=$Open\nValidated=$Validated\nClosed=$Closed\nRejected=$Rejected",Toast.LENGTH_LONG).show()
         }
         else if(Open && Rejected && !Validated && !Closed)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
                 .whereIn("Status", arrayListOf("Open","Rejected"))
-            //Toast.makeText(this,"Open=$Open\nValidated=$Validated\nClosed=$Closed\nRejected=$Rejected",Toast.LENGTH_LONG).show()
         }
 
         else if(Validated && Closed && !Open && !Rejected)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
                 .whereIn("Status", arrayListOf("Validated","Closed"))
-            //Toast.makeText(this,"Open=$Open\nValidated=$Validated\nClosed=$Closed\nRejected=$Rejected",Toast.LENGTH_LONG).show()
         }
 
         else if(Validated && Rejected && !Open && !Closed)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
                 .whereIn("Status", arrayListOf("Validated","Rejected"))
-            //Toast.makeText(this,"Open=$Open\nValidated=$Validated\nClosed=$Closed\nRejected=$Rejected",Toast.LENGTH_LONG).show()
         }
 
         else if(Closed && Rejected && !Open && !Validated)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
                 .whereIn("Status", arrayListOf("Rejected","Closed"))
-            //Toast.makeText(this,"Open=$Open\nValidated=$Validated\nClosed=$Closed\nRejected=$Rejected",Toast.LENGTH_LONG).show()
         }
         //1 at a time
         else if(Open && !Validated && !Closed && !Rejected)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
                 .whereEqualTo("Status","Open")
-            //Toast.makeText(this,"Open=$Open\nValidated=$Validated\nClosed=$Closed\nRejected=$Rejected",Toast.LENGTH_LONG).show()
         }
         else if(!Open && Validated && !Closed && !Rejected)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
                 .whereEqualTo("Status","Validated")
-            //Toast.makeText(this,"Open=$Open\nValidated=$Validated\nClosed=$Closed\nRejected=$Rejected",Toast.LENGTH_LONG).show()
         }
         else if(!Open && !Validated && Closed && !Rejected)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
                 .whereEqualTo("Status","Closed")
-            //Toast.makeText(this,"Open=$Open\nValidated=$Validated\nClosed=$Closed\nRejected=$Rejected",Toast.LENGTH_LONG).show()
         }
         else if(!Open && !Validated && !Closed && Rejected)
         {
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
                 .whereEqualTo("Status","Rejected")
-            //Toast.makeText(this,"Open=$Open\nValidated=$Validated\nClosed=$Closed\nRejected=$Rejected",Toast.LENGTH_LONG).show()
         }
         else{
-            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
-            //Toast.makeText(this,"Open=$Open\nValidated=$Validated\nClosed=$Closed\nRejected=$Rejected",Toast.LENGTH_LONG).show()
+            query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
         }
 
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<LeadModel> = FirestoreRecyclerOptions.Builder<LeadModel>().
@@ -198,14 +184,12 @@ class AssignedLeadsDashboardActivity : AppCompatActivity() {
 
     }
     checkCheckBoxes()
-    Toast.makeText(this,"onStart()",Toast.LENGTH_LONG).show()
         assignedLeadAdapter!!.startListening()
     }
 
 
     override fun onDestroy() {
         super.onDestroy()
-        Toast.makeText(this,"onDestroy()",Toast.LENGTH_LONG).show()
         assignedLeadAdapter!!.stopListening()
     }
 }

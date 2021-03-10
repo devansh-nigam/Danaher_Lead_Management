@@ -14,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.firestoreSettings
 import com.google.firebase.ktx.Firebase
@@ -186,9 +187,6 @@ class LeadSubmissionActivity : AppCompatActivity() {
                     "TimestampClosed" to "",
                     "Hash" to hash
                 )
-
-                var proceed=false
-
                 //checkForExistingUser(db,email)
                 //val q=db.collection("Users").document(email)
 //                db.collection("Users").document(email).get().addOnSuccessListener {
@@ -225,19 +223,6 @@ class LeadSubmissionActivity : AppCompatActivity() {
     }
 
     private fun checkForExistingUser(db: FirebaseFirestore, email: String) {
-        db.collection("Upcoming Events").orderBy("Event Date").get().addOnSuccessListener{
-            var x=0
-            var size=it.documents.size
-            var docs:String=""
-            var titles:String=""
-            while(x<=(size-1)) {
-                docs+= it.documents[x].data.toString()+"\n\n"
-                titles+=it.documents[x].data?.get("Event Title").toString()
-                x++
-            }
-
-           //binding.list.text
-        }
     }
 
     private fun EmailValidator(email: String): Int {

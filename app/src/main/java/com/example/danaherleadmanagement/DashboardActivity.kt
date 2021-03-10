@@ -20,6 +20,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.firestoreSettings
 import com.google.firebase.ktx.Firebase
@@ -38,8 +39,6 @@ class DashboardActivity : AppCompatActivity() {
         isPersistenceEnabled = true
     }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityDashboardBinding.inflate(layoutInflater)
@@ -50,11 +49,17 @@ class DashboardActivity : AppCompatActivity() {
 
         db.firestoreSettings = settings
 
-        //checkForNoAssignedLeads(db)
-        setUpRecyclerViewForAssignedLeads()
-        //checkForNoSubmittedLeads(db)
-        setUpRecyclerViewForSubmittedLeads()
+        binding.noAssignedImg.isVisible=false
+        binding.noAssignedTxt.isVisible=false
 
+        binding.noSubmittedImg.isVisible=false
+        binding.noSubmittedTxt.isVisible=false
+
+
+        checkForNoAssignedLeads(db)
+        setUpRecyclerViewForAssignedLeads()
+        checkForNoSubmittedLeads(db)
+        setUpRecyclerViewForSubmittedLeads()
 
         var full_name=""
         var domain=""
@@ -83,6 +88,13 @@ class DashboardActivity : AppCompatActivity() {
 
         binding.viewAllAssigned.setOnClickListener {
             val intent=Intent(this,AssignedLeadsDashboardActivity::class.java)
+            intent.putExtra("Leads","Assigned Leads")
+            startActivity(intent)
+        }
+
+        binding.viewAllSubmitted.setOnClickListener {
+            val intent=Intent(this,AssignedLeadsDashboardActivity::class.java)
+            intent.putExtra("Leads","Submitted Leads")
             startActivity(intent)
         }
 
@@ -104,31 +116,45 @@ class DashboardActivity : AppCompatActivity() {
         }
     }
 
-//    private fun checkForNoAssignedLeads(db:FirebaseFirestore) {
-//        val query:CollectionReference?=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
-//
-//        if(query==null){
-//            binding.noAssignedImg.isVisible=true
-//            binding.noAssignedTxt.isVisible=true
-//        }
-//        else{
-//            binding.noAssignedImg.isVisible=false
-//            binding.noAssignedTxt.isVisible=false
-//        }
-//    }
-//
-//    private fun checkForNoSubmittedLeads(db:FirebaseFirestore) {
-//        val query:CollectionReference?=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Submitted Leads")
-//
-//        if(query==null){
-//            binding.noSubmittedImg.isVisible=true
-//            binding.noSubmittedTxt.isVisible=true
-//        }
-//        else{
-//            binding.noSubmittedImg.isVisible=false
-//            binding.noSubmittedTxt.isVisible=false
-//        }
-//    }
+    private fun checkForNoAssignedLeads(db:FirebaseFirestore) {
+        val query: Query?=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads")
+        try {
+            query!!.get().addOnCompleteListener {
+               val r = it.result!!.isEmpty
+                if (r) {
+                    binding.noAssignedImg.isVisible = true
+                    binding.noAssignedTxt.isVisible = true
+                    binding.viewAllAssigned.isVisible=false
+                } else {
+                    binding.noAssignedImg.isVisible = false
+                    binding.noAssignedTxt.isVisible = false
+                    binding.viewAllAssigned.isVisible=true
+                }
+            }
+        }catch(e:Exception){
+            Toast.makeText(this,e.message,Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun checkForNoSubmittedLeads(db:FirebaseFirestore) {
+        val query: Query?=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Submitted Leads")
+        try {
+            query!!.get().addOnCompleteListener {
+                val r = it.result!!.isEmpty
+                if (r) {
+                    binding.noSubmittedImg.isVisible = true
+                    binding.noSubmittedTxt.isVisible = true
+                    binding.viewAllSubmitted.isVisible=false
+                } else {
+                    binding.noSubmittedImg.isVisible = false
+                    binding.noSubmittedTxt.isVisible = false
+                    binding.viewAllSubmitted.isVisible=true
+                }
+            }
+        }catch(e:Exception){
+            Toast.makeText(this,e.message,Toast.LENGTH_LONG).show()
+        }
+    }
 
     private fun setUpRecyclerViewForSubmittedLeads() {
         val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Submitted Leads")//.orderBy("TimestampSubmission")
@@ -136,7 +162,6 @@ class DashboardActivity : AppCompatActivity() {
         setQuery(query,LeadModel::class.java).build()
 
         submittedLeadAdapter= LeadAdapter(firestoreRecyclerOptions)
-
         layoutManager= LinearLayoutManager(this)
         (layoutManager as LinearLayoutManager).orientation = LinearLayoutManager.HORIZONTAL
         binding.recyclerViewSubmittedLeads.layoutManager=layoutManager
@@ -155,7 +180,6 @@ class DashboardActivity : AppCompatActivity() {
         binding.recyclerViewAssignedLeads.adapter=assignedLeadAdapter
     }
 
-
     //Menu Stuff
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_dashboard,menu)
@@ -166,6 +190,30 @@ class DashboardActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.signOut -> {
                 signOut(mAuth)
+            }
+            R.id.contact->{
+                db.collection("URL").document("Links").get().addOnSuccessListener {
+                    val url=it.data!!.get("Contact") as String?
+                    val intent=Intent(this,WebActivity::class.java)
+                    intent.putExtra("url",url)
+                    startActivity(intent)
+                }
+            }
+            R.id.terms->{
+                db.collection("URL").document("Links").get().addOnSuccessListener {
+                    val url=it.data!!.get("Terms") as String?
+                    val intent=Intent(this,WebActivity::class.java)
+                    intent.putExtra("url",url)
+                    startActivity(intent)
+                }
+            }
+            R.id.privacyPolicy->{
+                db.collection("URL").document("Links").get().addOnSuccessListener {
+                    val url=it.data!!.get("Privacy") as String?
+                    val intent=Intent(this,WebActivity::class.java)
+                    intent.putExtra("url",url)
+                    startActivity(intent)
+                }
             }
         }
         return super.onOptionsItemSelected(item)
@@ -184,19 +232,15 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        //checkForNoAssignedLeads(db)
+        checkForNoAssignedLeads(db)
         assignedLeadAdapter!!.startListening()
-        //checkForNoSubmittedLeads(db)
+        checkForNoSubmittedLeads(db)
         submittedLeadAdapter!!.startListening()
-        //pastEventAdapter!!.startListening()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        //checkForNoAssignedLeads(db)
         assignedLeadAdapter!!.stopListening()
-        //checkForNoSubmittedLeads(db)
         submittedLeadAdapter!!.stopListening()
-       // pastEventAdapter!!.stopListening()
     }
 }
