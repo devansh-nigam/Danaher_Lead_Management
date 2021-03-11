@@ -65,7 +65,7 @@ Lead Details            |  Lead Validation | Lead Closure
 
 Users Collection           |  User Account Details | User Assigned Leads
 :-------------------------:|:-------------------------:|:-------------------------:
-![Lead Details](/app-screenshots/UsersCollection.png)  |  ![Lead Validation](/app-screenshots/UserDetails.gif) | ![Lead Closure](/app-screenshots/AssignedLeads.png)
+![Lead Details](/app-screenshots/UsersCollection.png)  |  ![Lead Validation](/app-screenshots/UserDetails.png) | ![Lead Closure](/app-screenshots/AssignedLeads.png)
 
 
 #### Sneak-Peek Into the Firebase Operations
