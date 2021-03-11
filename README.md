@@ -63,10 +63,14 @@ Lead Details            |  Lead Validation | Lead Closure
 
 #### Filter Leads On The Basis of Status
 
-Assigned Dashboard            |  Filter Through Status | Real-time Updation
+Users Collection           |  User Account Details | User Assigned Leads
 :-------------------------:|:-------------------------:|:-------------------------:
-![Lead Details](/app-screenshots/filter1.png)  |  ![Lead Validation](/app-screenshots/filter.gif) | ![Lead Closure](/app-screenshots/filter3.png)
+![Lead Details](/app-screenshots/UsersCollection.png)  |  ![Lead Validation](/app-screenshots/UserDetails.gif) | ![Lead Closure](/app-screenshots/AssignedLeads.png)
 
+
+#### Sneak-Peek Into the Firebase Operations
+
+![]()
 
 
 The apk for the android application is provided in the /app/release/ section of the github repository. 
