@@ -46,6 +46,7 @@ class LeadReviewActivity : AppCompatActivity() {
 
         val Name=intent.getStringExtra("Name")
         val SubmittedBy=intent.getStringExtra("SubmittedBy")
+        val SubmittedTo=intent.getStringExtra("SubmittedTo")
         val TimestampSubmission=intent.getStringExtra("TimestampSubmission")
         val status=intent.getStringExtra("Status")
         val hash=intent.getStringExtra("Hash")
@@ -81,8 +82,7 @@ class LeadReviewActivity : AppCompatActivity() {
         if(leadIs=="Submitted Leads"){
             binding.impButtons.isVisible=false
             binding.close.isVisible=false
-            binding.cardViewPersonalLead.root.isVisible=false
-            binding.toYou.isVisible=false
+            binding.toYou.text="You Have Assigned This Lead To"
         }
         else if(leadIs=="Assigned Leads"){
             binding.close.isVisible=false
@@ -120,22 +120,37 @@ class LeadReviewActivity : AppCompatActivity() {
 
         }
 
-
-        db.collection("Users").document(SubmittedBy.toString()).collection("Account Info").document("Details").get()
-            .addOnSuccessListener {
-                binding.cardViewPersonalLead.userName.text=it.data!!.get("Name") as String?
-                val domain=it.data!!.get("Domain") as String?
-                binding.cardViewPersonalLead.textDomain.text=domain
-                if(domain=="Life Sciences"){
-                    binding.cardViewPersonalLead.imageDomain.setImageResource(R.drawable.lab)
-                }else if(domain=="Environmental & Applied Solutions"){
-                    binding.cardViewPersonalLead.imageDomain.setImageResource(R.drawable.earth)
-                }
-                else if(domain=="Diagnostics"){
-                    binding.cardViewPersonalLead.imageDomain.setImageResource(R.drawable.diagnostic)
-                }
-                binding.cardViewPersonalLead.textCompany.text=it.data!!.get("OpCo") as String?
-            }
+        if(leadIs=="Assigned Leads") {
+            db.collection("Users").document(SubmittedBy.toString()).collection("Account Info").document("Details").get()
+                    .addOnSuccessListener {
+                        binding.cardViewPersonalLead.userName.text = it.data!!.get("Name") as String?
+                        val domain = it.data!!.get("Domain") as String?
+                        binding.cardViewPersonalLead.textDomain.text = domain
+                        if (domain == "Life Sciences") {
+                            binding.cardViewPersonalLead.imageDomain.setImageResource(R.drawable.lab)
+                        } else if (domain == "Environmental & Applied Solutions") {
+                            binding.cardViewPersonalLead.imageDomain.setImageResource(R.drawable.earth)
+                        } else if (domain == "Diagnostics") {
+                            binding.cardViewPersonalLead.imageDomain.setImageResource(R.drawable.diagnostic)
+                        }
+                        binding.cardViewPersonalLead.textCompany.text = it.data!!.get("OpCo") as String?
+                    }
+        }else if(leadIs=="Submitted Leads"){
+            db.collection("Users").document(SubmittedTo.toString()).collection("Account Info").document("Details").get()
+                    .addOnSuccessListener {
+                        binding.cardViewPersonalLead.userName.text = it.data!!.get("Name") as String?
+                        val domain = it.data!!.get("Domain") as String?
+                        binding.cardViewPersonalLead.textDomain.text = domain
+                        if (domain == "Life Sciences") {
+                            binding.cardViewPersonalLead.imageDomain.setImageResource(R.drawable.lab)
+                        } else if (domain == "Environmental & Applied Solutions") {
+                            binding.cardViewPersonalLead.imageDomain.setImageResource(R.drawable.earth)
+                        } else if (domain == "Diagnostics") {
+                            binding.cardViewPersonalLead.imageDomain.setImageResource(R.drawable.diagnostic)
+                        }
+                        binding.cardViewPersonalLead.textCompany.text = it.data!!.get("OpCo") as String?
+                    }
+        }
 
         binding.validate.setOnClickListener {
             val dialogBuilder = AlertDialog.Builder(this)
