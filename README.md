@@ -61,11 +61,14 @@ Lead Details            |  Lead Validation | Lead Closure
 :-------------------------:|:-------------------------:|:-------------------------:
 ![Lead Details](/app-screenshots/LeadDetails.png)  |  ![Lead Validation](/app-screenshots/Validation.png) | ![Lead Closure](/app-screenshots/Closure.png)
 
-#### Filter Leads On The Basis of Status
+#### Sneak-Peek Into the Firebase Operations
 
-Assigned Dashboard            |  Filter Through Status | Real-time Updation
+Each transacition of either assigning a lead or submitting a lead is given a unique hash for security purposes, you have a look at the code to exactly know which hashing algorithm is used.
+
+Users Collection           |  User Account Details | User Assigned Leads
 :-------------------------:|:-------------------------:|:-------------------------:
-![Lead Details](/app-screenshots/filter1.png)  |  ![Lead Validation](/app-screenshots/filter.gif) | ![Lead Closure](/app-screenshots/filter3.png)
+![Lead Details](/app-screenshots/UsersCollection.png)  |  ![Lead Validation](/app-screenshots/UserDetails.png) | ![Lead Closure](/app-screenshots/AssignedLeads.png)
+
 
 
 
