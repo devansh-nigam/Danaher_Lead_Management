@@ -11,5 +11,6 @@ class LeadModel(){
     var TimestampSubmission:String?=null
     var TimestampValidated:String?=null
     var TimestampRejected:String?=null
+    var TimestampClosed:String?=null
     var Hash:String?=null
 }
