@@ -69,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
                     vibrator.vibrate(10) // Vibrate method for below API Level 26
                 }
             }
-            binding.progressBar.isVisible=true
+
 
             email=binding.email.text.toString()
 
@@ -98,7 +98,9 @@ class LoginActivity : AppCompatActivity() {
                  snack.show()
              }
             else{
+                binding.progressBar.isVisible=true
                 binding.login.isClickable=false
+                 binding.login.isVisible=false
                 mAuth.signInWithEmailAndPassword(email,pass).
                         addOnCompleteListener(
                                 {
@@ -109,6 +111,8 @@ class LoginActivity : AppCompatActivity() {
                                         finish()
                                     }else{
                                         binding.progressBar.isVisible=false
+                                        binding.login.isClickable=true
+                                        binding.login.isVisible=true
                                         Toast.makeText(this,"${task.exception!!.message}",Toast.LENGTH_LONG).show()
                                         binding.login.isClickable=true
                                     }

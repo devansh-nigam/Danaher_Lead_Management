@@ -250,6 +250,8 @@ class RegisterActivity : AppCompatActivity() {
             else{
                 progressBar.isVisible=true
                 binding.register.isClickable=false
+                binding.register.isVisible=false
+
                 mAuth.createUserWithEmailAndPassword(email,pass1).
                         addOnCompleteListener({task->
                             if(task.isSuccessful){
@@ -275,12 +277,15 @@ class RegisterActivity : AppCompatActivity() {
                                         finish()
                                     }.addOnFailureListener {
                                         binding.register.isClickable=true
+                                            binding.progressBar.isVisible=false
+                                            binding.register.isVisible=true
                                         Toast.makeText(this,"${it.message}",Toast.LENGTH_LONG).show()
                                     }
                             }else{
+                                binding.progressBar.isVisible=false
+                                binding.register.isVisible=true
                                 binding.register.isClickable=true
                                 Toast.makeText(this,"${task.exception!!.message}",Toast.LENGTH_LONG).show()
-                                binding.progressBar.isVisible=false
                             }
                         })
 

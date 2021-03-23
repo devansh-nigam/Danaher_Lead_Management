@@ -162,9 +162,9 @@ class LeadSubmissionActivity : AppCompatActivity() {
                 snack.show()
             }
             else{
-                progressBar.isVisible=true
+                binding.progressBar.isVisible=true
                 binding.submit.isClickable=false
-
+                binding.submit.isVisible=false
 
                 val now=Timestamp.now()
                 val bytes= MessageDigest.getInstance("MD5").digest(now.toString().toByteArray())
@@ -200,13 +200,15 @@ class LeadSubmissionActivity : AppCompatActivity() {
                                             finish()
                                         }.addOnFailureListener {
                                             Toast.makeText(this,"${it.message}",Toast.LENGTH_LONG).show()
+                                            binding.progressBar.isVisible=false
                                             binding.submit.isClickable=true
-                                            progressBar.isVisible=false
+                                            binding.submit.isVisible=true
                                         }
                             }.addOnFailureListener {
                                 Toast.makeText(this,"${it.message}",Toast.LENGTH_LONG).show()
-                                progressBar.isVisible=false
+                                binding.progressBar.isVisible=false
                                 binding.submit.isClickable=true
+                                binding.submit.isVisible=true
                             }
                 }
             }
