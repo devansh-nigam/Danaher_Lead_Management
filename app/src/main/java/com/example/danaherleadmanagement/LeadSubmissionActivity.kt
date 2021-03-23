@@ -28,16 +28,18 @@ class LeadSubmissionActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLeadSubmissionBinding
     private lateinit var mAuth: FirebaseAuth
 
+    val db = Firebase.firestore
+    val settings = firestoreSettings {
+        isPersistenceEnabled = true
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityLeadSubmissionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         mAuth= FirebaseAuth.getInstance()
-        val db = Firebase.firestore
-        val settings = firestoreSettings {
-            isPersistenceEnabled = true
-        }
+
         db.firestoreSettings = settings
 
         binding.progressBar.isVisible=false
@@ -183,6 +185,9 @@ class LeadSubmissionActivity : AppCompatActivity() {
                     "Hash" to hash
                 )
 
+                val finalCheck=checkForUser(email)
+                if(finalCheck)
+                {
                     //adding as assigned lead first
                     db.collection("Users").document(email).collection("Assigned Leads").document(hash).set(leadDetails)
                             .addOnSuccessListener {
@@ -203,9 +208,31 @@ class LeadSubmissionActivity : AppCompatActivity() {
                                 progressBar.isVisible=false
                                 binding.submit.isClickable=true
                             }
-
+                }
             }
+        }
+    }
 
+    private fun checkForUser(email: String):Boolean {
+        val query: Query?=db.collection("Users").document(email).collection("Account Info")
+        var re=false;
+        try {
+            query!!.get().addOnCompleteListener {
+                val r = it.result!!.isEmpty
+                if (r) {
+                    Toast.makeText(this,"No Such User Exists Yet!",Toast.LENGTH_LONG).show()
+                    re=!r
+                    progressBar.isVisible=false
+                } else {
+                    //Toast.makeText(this,"Proceed Safely",Toast.LENGTH_LONG).show()
+                    re=!r
+                }
+            }
+            return re
+        }catch(e:Exception){
+            Toast.makeText(this,e.message,Toast.LENGTH_LONG).show()
+            progressBar.isVisible=false
+            return false
         }
     }
 

@@ -160,7 +160,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="16sp"
+                android:textSize="12sp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/light_blue"
                 android:fontFamily="@font/latolight"
@@ -169,6 +169,7 @@
             <TextView
                 android:layout_marginStart="5dp"
                 android:id="@+id/emailOfSender"
+                android:textSize="12sp"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_height="wrap_content"

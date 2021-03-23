@@ -35,6 +35,10 @@ class ForgotPasswordActivity : AppCompatActivity() {
             BackToLogin()
         }
 
+        binding.newRegister.setOnClickListener {
+            goToRegister()
+        }
+
         binding.reset.setOnClickListener {
 
             val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
@@ -75,6 +79,12 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun goToRegister() {
+        val intent=Intent(this,RegisterActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun BackToLogin(){
