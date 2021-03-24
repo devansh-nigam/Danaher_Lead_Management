@@ -224,6 +224,8 @@ class LeadSubmissionActivity : AppCompatActivity() {
                 val r = it.result!!.isEmpty
                 if (r) {
                     Toast.makeText(this,"No Such User Exists Yet!",Toast.LENGTH_LONG).show()
+                    binding.submit.isVisible=true
+                    binding.submit.isClickable=true
                     re=!r
                     progressBar.isVisible=false
                 } else {
@@ -234,6 +236,8 @@ class LeadSubmissionActivity : AppCompatActivity() {
             return re
         }catch(e:Exception){
             Toast.makeText(this,e.message,Toast.LENGTH_LONG).show()
+            binding.submit.isVisible=true
+            binding.submit.isClickable=true
             progressBar.isVisible=false
             return false
         }
