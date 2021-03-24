@@ -151,6 +151,7 @@ class LeadReviewActivity : AppCompatActivity() {
                             binding.cardViewPersonalLead.imageDomain.setImageResource(R.drawable.diagnostic)
                         }
                         binding.cardViewPersonalLead.textCompany.text = it.data!!.get("OpCo") as String?
+                        binding.cardViewPersonalLead.userEmail.text=it.data!!.get("Email") as String?
                     }
         }
 
@@ -305,11 +306,9 @@ class LeadReviewActivity : AppCompatActivity() {
                             }.addOnFailureListener {
                                 Toast.makeText(this,"${it.message}",Toast.LENGTH_LONG).show()
                                 binding.reject.isClickable=true
-//                                progressBar.isVisible=false
                             }
                 }.addOnFailureListener {
                     Toast.makeText(this,"${it.message}",Toast.LENGTH_LONG).show()
-//                    progressBar.isVisible=false
                     binding.reject.isClickable=true
                 }
     }

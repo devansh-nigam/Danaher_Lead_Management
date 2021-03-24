@@ -198,16 +198,6 @@
             android:textColor="@color/white"
             android:fontFamily="@font/latobold"
             android:background="@color/light_blue"/>
-
-        <ProgressBar
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/progress"
-            />
     </LinearLayout>
 
 </ScrollView>

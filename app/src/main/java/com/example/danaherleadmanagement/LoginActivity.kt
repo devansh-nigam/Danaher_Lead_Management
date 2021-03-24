@@ -1,5 +1,6 @@
 package com.example.danaherleadmanagement
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -29,7 +30,6 @@ class LoginActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
 
         val user=mAuth.currentUser
-        binding.progressBar.isVisible=false
 
         if(user!=null){
             val intent=Intent(this@LoginActivity,DashboardActivity::class.java)
@@ -96,11 +96,10 @@ class LoginActivity : AppCompatActivity() {
                  snack.show()
              }
             else{
-                binding.progressBar.isVisible=true
-                binding.login.isClickable=false
-                 binding.forgot.isClickable=false
-                 binding.newRegister.isClickable=false
-                 binding.login.isVisible=false
+                 var pd= ProgressDialog(this)
+                 pd.setTitle("Loading...")
+                 pd.setMessage("Logging You In")
+                 pd.show()
                 mAuth.signInWithEmailAndPassword(email,pass).
                         addOnCompleteListener(
                                 {
@@ -110,13 +109,8 @@ class LoginActivity : AppCompatActivity() {
                                         startActivity(intent)
                                         finish()
                                     }else{
-                                        binding.progressBar.isVisible=false
-                                        binding.login.isClickable=true
-                                        binding.login.isVisible=true
-                                        binding.forgot.isClickable=true
-                                        binding.newRegister.isClickable=true
+                                        pd.hide()
                                         Toast.makeText(this,"${task.exception!!.message}",Toast.LENGTH_LONG).show()
-                                        binding.login.isClickable=true
                                     }
                                 }
                         )

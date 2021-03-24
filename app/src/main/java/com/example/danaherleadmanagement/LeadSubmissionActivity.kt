@@ -1,5 +1,6 @@
 package com.example.danaherleadmanagement
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -33,6 +34,12 @@ class LeadSubmissionActivity : AppCompatActivity() {
         isPersistenceEnabled = true
     }
 
+    var full_name=""
+    var email=""
+    var opportunity=""
+    var segment=""
+    var value=""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityLeadSubmissionBinding.inflate(layoutInflater)
@@ -42,13 +49,8 @@ class LeadSubmissionActivity : AppCompatActivity() {
 
         db.firestoreSettings = settings
 
-        binding.progressBar.isVisible=false
 
-        var full_name=""
-        var email=""
-        var opportunity=""
-        var segment=""
-        var value=""
+
 
         var flagName=1
         var flagNameValidate=1
@@ -79,7 +81,6 @@ class LeadSubmissionActivity : AppCompatActivity() {
                 }
             }
 
-            binding.progressBar.isVisible=false
 
             full_name=binding.customerName.text.toString().trim()
 
@@ -162,37 +163,49 @@ class LeadSubmissionActivity : AppCompatActivity() {
                 snack.show()
             }
             else{
-                binding.progressBar.isVisible=true
-                binding.submit.isClickable=false
-                binding.submit.isVisible=false
+                checkForUser(email)
+            }
+        }
+    }
 
-                val now=Timestamp.now()
-                val bytes= MessageDigest.getInstance("MD5").digest(now.toString().toByteArray())
-                val hash=bytes.joinToString("") { "%02x".format(it) }
+    private fun checkForUser(email: String) {
+        var pd= ProgressDialog(this)
+        pd.setTitle("Loading...")
+        pd.setMessage("Submitting Lead")
+        pd.show()
+        val query: Query?=db.collection("Users").document(email).collection("Account Info")
+        try {
+            query!!.get().addOnCompleteListener {
+                val r = it.result!!.isEmpty
+                if (r) {
+                    pd.hide()
+                    Toast.makeText(this,"No Such User Exists Yet!",Toast.LENGTH_LONG).show()
+                } else {
 
-                val leadDetails = hashMapOf(
-                    "Name" to full_name,
-                    "Opportunity" to opportunity,
-                    "Segment" to segment,
-                    "Value" to "$$value",
-                    "SubmittedBy" to currentUser!!.email,
-                    "SubmittedTo" to email,
-                    "Status" to "Open",
-                    "TimestampSubmission" to now.toDate().toString(),
-                    "TimestampValidated" to "",
-                    "TimestampRejected" to "",
-                    "TimestampClosed" to "",
-                        "TimestampLatest" to now.toDate().toString(),
-                    "Hash" to hash
-                )
 
-                val finalCheck=checkForUser(email)
-                if(finalCheck)
-                {
-                    //adding as assigned lead first
+                    val now=Timestamp.now()
+                    val bytes= MessageDigest.getInstance("MD5").digest(now.toString().toByteArray())
+                    val hash=bytes.joinToString("") { "%02x".format(it) }
+                    val user=mAuth.currentUser
+                    val leadDetails = hashMapOf(
+                            "Name" to full_name,
+                            "Opportunity" to opportunity,
+                            "Segment" to segment,
+                            "Value" to "$$value",
+                            "SubmittedBy" to user!!.email,
+                            "SubmittedTo" to email,
+                            "Status" to "Open",
+                            "TimestampSubmission" to now.toDate().toString(),
+                            "TimestampValidated" to "",
+                            "TimestampRejected" to "",
+                            "TimestampClosed" to "",
+                            "TimestampLatest" to now.toDate().toString(),
+                            "Hash" to hash
+                    )
+
                     db.collection("Users").document(email).collection("Assigned Leads").document(hash).set(leadDetails)
                             .addOnSuccessListener {
-                                db.collection("Users").document(currentUser.email!!).collection("Submitted Leads").document(hash).set(leadDetails)
+                                db.collection("Users").document(user.email!!).collection("Submitted Leads").document(hash).set(leadDetails)
                                         .addOnSuccessListener {
 
                                             Toast.makeText(this,"Lead Submitted Successfully!",Toast.LENGTH_LONG).show()
@@ -200,46 +213,17 @@ class LeadSubmissionActivity : AppCompatActivity() {
                                             startActivity(intent)
                                             finish()
                                         }.addOnFailureListener {
+                                            pd.hide()
                                             Toast.makeText(this,"${it.message}",Toast.LENGTH_LONG).show()
-                                            binding.progressBar.isVisible=false
-                                            binding.submit.isClickable=true
-                                            binding.submit.isVisible=true
                                         }
                             }.addOnFailureListener {
+                                pd.hide()
                                 Toast.makeText(this,"${it.message}",Toast.LENGTH_LONG).show()
-                                binding.progressBar.isVisible=false
-                                binding.submit.isClickable=true
-                                binding.submit.isVisible=true
                             }
                 }
             }
-        }
-    }
-
-    private fun checkForUser(email: String):Boolean {
-        val query: Query?=db.collection("Users").document(email).collection("Account Info")
-        var re=false;
-        try {
-            query!!.get().addOnCompleteListener {
-                val r = it.result!!.isEmpty
-                if (r) {
-                    Toast.makeText(this,"No Such User Exists Yet!",Toast.LENGTH_LONG).show()
-                    binding.submit.isVisible=true
-                    binding.submit.isClickable=true
-                    re=!r
-                    progressBar.isVisible=false
-                } else {
-                    //Toast.makeText(this,"Proceed Safely",Toast.LENGTH_LONG).show()
-                    re=!r
-                }
-            }
-            return re
         }catch(e:Exception){
             Toast.makeText(this,e.message,Toast.LENGTH_LONG).show()
-            binding.submit.isVisible=true
-            binding.submit.isClickable=true
-            progressBar.isVisible=false
-            return false
         }
     }
 

@@ -26,7 +26,6 @@ class ForgotPasswordActivity : AppCompatActivity() {
         supportActionBar!!.title="Forgot Password"
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         mAuth= FirebaseAuth.getInstance()
-        binding.progressBar.isVisible=false
         var email=""
         var flagEmail=1
         var flagEmailValidate=1
@@ -67,14 +66,10 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 snack.show()
             }
             else{
-                binding.reset.isClickable=false
-                progressBar.isVisible=true
                 mAuth.sendPasswordResetEmail(email).addOnSuccessListener {
                     Toast.makeText(this,"Password Reset Link Sent Successfully!",Toast.LENGTH_LONG).show()
                     BackToLogin()
                 }.addOnFailureListener {
-                    progressBar.isVisible=false
-                    binding.reset.isClickable=true
                     Toast.makeText(this,"${it.message}",Toast.LENGTH_LONG).show()
                 }
             }

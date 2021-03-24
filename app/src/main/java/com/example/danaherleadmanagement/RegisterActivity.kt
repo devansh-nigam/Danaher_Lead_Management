@@ -1,5 +1,6 @@
 package com.example.danaherleadmanagement
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -39,7 +40,6 @@ class RegisterActivity : AppCompatActivity() {
 
         val operatingSpinner = findViewById<Spinner>(R.id.spinnerOperating)
         operatingSpinner.isVisible=false
-        binding.progressBar.isVisible=false
 
         mAuth = FirebaseAuth.getInstance()
         //val user:FirebaseUser? = mAuth.currentUser
@@ -63,7 +63,6 @@ class RegisterActivity : AppCompatActivity() {
         var flagEmailValidate=1
         var flagDomain=1
         var flagOpCo=1
-        var flagPassValidate=1
         var flagPass1=1
         var flagPass2=1
         var flagPassMatch=1
@@ -133,7 +132,6 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                //flagBranch = 1
                 flagDomain=1
             }
         }
@@ -244,20 +242,15 @@ class RegisterActivity : AppCompatActivity() {
                 snack.show()
             }
             else{
-                binding.passwd2.isVisible=true
-                progressBar.isVisible=true
-                binding.register.isClickable=false
-                binding.register.isVisible=false
-                binding.toLogin.isClickable=false
-                binding.toTerms.isClickable=false
+                var pd= ProgressDialog(this)
+                pd.setTitle("Loading...")
+                pd.setMessage("Registering $full_name")
+                pd.show()
 
                 mAuth.createUserWithEmailAndPassword(email,pass1).
                         addOnCompleteListener({task->
                             if(task.isSuccessful){
-                                binding.register.isClickable=false
-
                                 val user=mAuth.currentUser!!
-
                                 val userDetails = hashMapOf(
                                     "Name" to "${full_name}",
                                     "Email" to "${user.email}",
@@ -268,6 +261,7 @@ class RegisterActivity : AppCompatActivity() {
 
                                 db.collection("Users").document(user.email).collection("Account Info").document("Details").set(userDetails)
                                     .addOnCompleteListener {
+                                        pd.hide()
                                         Toast.makeText(this,"User registered successfully",Toast.LENGTH_LONG).show()
                                         val intent = Intent(this@RegisterActivity, DashboardActivity::class.java)
                                         intent.flags =
@@ -275,19 +269,11 @@ class RegisterActivity : AppCompatActivity() {
                                         startActivity(intent)
                                         finish()
                                     }.addOnFailureListener {
-                                        binding.register.isClickable=true
-                                            binding.progressBar.isVisible=false
-                                            binding.register.isVisible=true
-                                            binding.toLogin.isClickable=true
-                                            binding.toTerms.isClickable=true
+                                            pd.hide()
                                         Toast.makeText(this,"${it.message}",Toast.LENGTH_LONG).show()
                                     }
                             }else{
-                                binding.progressBar.isVisible=false
-                                binding.register.isVisible=true
-                                binding.register.isClickable=true
-                                binding.toLogin.isClickable=true
-                                binding.toTerms.isClickable=true
+                                pd.hide()
                                 Toast.makeText(this,"${task.exception!!.message}",Toast.LENGTH_LONG).show()
                             }
                         })
@@ -311,7 +297,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun NameValidate(fullName: String): Int {
-
         var result=0
         for(i in fullName){
             if(i.isDigit()){
