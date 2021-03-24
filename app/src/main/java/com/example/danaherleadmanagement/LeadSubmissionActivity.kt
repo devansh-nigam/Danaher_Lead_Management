@@ -182,6 +182,7 @@ class LeadSubmissionActivity : AppCompatActivity() {
                     "TimestampValidated" to "",
                     "TimestampRejected" to "",
                     "TimestampClosed" to "",
+                        "TimestampLatest" to now.toDate().toString(),
                     "Hash" to hash
                 )
 

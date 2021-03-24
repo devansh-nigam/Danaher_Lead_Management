@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -37,8 +39,6 @@ class RegisterActivity : AppCompatActivity() {
 
         val operatingSpinner = findViewById<Spinner>(R.id.spinnerOperating)
         operatingSpinner.isVisible=false
-        binding.passwd2.isVisible=false
-        binding.warning.isVisible=false
         binding.progressBar.isVisible=false
 
         mAuth = FirebaseAuth.getInstance()
@@ -144,6 +144,11 @@ class RegisterActivity : AppCompatActivity() {
             else flagCheck=1
         }
 
+        binding.showPassword.setOnClickListener {
+            if(binding.showPassword.isChecked) binding.passwd2.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            else binding.passwd2.transformationMethod = PasswordTransformationMethod.getInstance()
+        }
+
         binding.toLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -187,15 +192,6 @@ class RegisterActivity : AppCompatActivity() {
             if(pass1.isEmpty())flagPass1=1
             else{
                 flagPass1=0
-                flagPassValidate=PasswordValidator(pass1)
-                if(flagPassValidate==0){
-                    binding.warning.isVisible=false
-                    binding.passwd2.isVisible=true
-                }
-                else{
-                    binding.passwd2.isVisible=false
-                    binding.warning.isVisible=true
-                }
             }
 
             pass2=binding.passwd2.text.toString()
@@ -235,22 +231,25 @@ class RegisterActivity : AppCompatActivity() {
                 val snack = Snackbar.make(it,"Please Create A Password",Snackbar.LENGTH_LONG)
                 snack.show()
             }
-            else if(flagPassValidate==0 && flagPass2==1){
+            else if(flagPass2==1){
                 val snack = Snackbar.make(it,"Please Confirm Your Password",Snackbar.LENGTH_LONG)
                 snack.show()
             }
-            else if(flagPassValidate==0 && flagPass2==0 && flagPassMatch==1){
+            else if(flagPass2==0 && flagPassMatch==1){
                 val snack = Snackbar.make(it,"Passwords don't match, Please Try Again",Snackbar.LENGTH_LONG)
                 snack.show()
             }
-            else if(flagPassValidate==0 && flagPass2==0 && flagCheck==1){
+            else if(flagPass2==0 && flagCheck==1){
                 val snack = Snackbar.make(it,"Please Agree To The Terms",Snackbar.LENGTH_LONG)
                 snack.show()
             }
             else{
+                binding.passwd2.isVisible=true
                 progressBar.isVisible=true
                 binding.register.isClickable=false
                 binding.register.isVisible=false
+                binding.toLogin.isClickable=false
+                binding.toTerms.isClickable=false
 
                 mAuth.createUserWithEmailAndPassword(email,pass1).
                         addOnCompleteListener({task->
@@ -279,37 +278,22 @@ class RegisterActivity : AppCompatActivity() {
                                         binding.register.isClickable=true
                                             binding.progressBar.isVisible=false
                                             binding.register.isVisible=true
+                                            binding.toLogin.isClickable=true
+                                            binding.toTerms.isClickable=true
                                         Toast.makeText(this,"${it.message}",Toast.LENGTH_LONG).show()
                                     }
                             }else{
                                 binding.progressBar.isVisible=false
                                 binding.register.isVisible=true
                                 binding.register.isClickable=true
+                                binding.toLogin.isClickable=true
+                                binding.toTerms.isClickable=true
                                 Toast.makeText(this,"${task.exception!!.message}",Toast.LENGTH_LONG).show()
                             }
                         })
 
             }
         }
-    }
-
-    private fun PasswordValidator(pass1: String): Int {
-        var upper = false
-        var lower = false
-        var digit = false
-        var special = false
-
-        if(pass1.length<6)return 1
-
-        for(i in pass1){
-            if(i.isDigit())digit=true
-            else if(i.isUpperCase())upper=true
-            else if(i.isLowerCase())lower=true
-            else special=true
-        }
-        if(upper && lower && digit && special)
-            return 0
-        else return 1
     }
 
     private fun EmailValidator(email: String): Int {

@@ -49,10 +49,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.newRegister.setOnClickListener {
-            binding.progressBar.isVisible=true
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
         binding.forgot.setOnClickListener {
@@ -100,6 +98,8 @@ class LoginActivity : AppCompatActivity() {
             else{
                 binding.progressBar.isVisible=true
                 binding.login.isClickable=false
+                 binding.forgot.isClickable=false
+                 binding.newRegister.isClickable=false
                  binding.login.isVisible=false
                 mAuth.signInWithEmailAndPassword(email,pass).
                         addOnCompleteListener(
@@ -113,6 +113,8 @@ class LoginActivity : AppCompatActivity() {
                                         binding.progressBar.isVisible=false
                                         binding.login.isClickable=true
                                         binding.login.isVisible=true
+                                        binding.forgot.isClickable=true
+                                        binding.newRegister.isClickable=true
                                         Toast.makeText(this,"${task.exception!!.message}",Toast.LENGTH_LONG).show()
                                         binding.login.isClickable=true
                                     }

@@ -39,6 +39,10 @@ class DashboardActivity : AppCompatActivity() {
         isPersistenceEnabled = true
     }
 
+    var full_name=""
+    var domain=""
+    var company=""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityDashboardBinding.inflate(layoutInflater)
@@ -67,9 +71,7 @@ class DashboardActivity : AppCompatActivity() {
         checkForNoSubmittedLeads(db)
         setUpRecyclerViewForSubmittedLeads()
 
-        var full_name=""
-        var domain=""
-        var company=""
+
 
             db.collection("Users").document(user.email!!).collection("Account Info").get().addOnSuccessListener {
                 full_name=it.documents[0]["Name"] as String
@@ -105,21 +107,25 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         binding.submitLead.setOnClickListener {
-            val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-            if (vibrator.hasVibrator()) { // Vibrator availability checking
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    vibrator.vibrate(VibrationEffect.createOneShot(10, VibrationEffect.DEFAULT_AMPLITUDE)) // New vibrate method for API Level 26 or higher
-                } else {
-                    vibrator.vibrate(10) // Vibrate method for below API Level 26
-                }
-            }
-
-            val intent=Intent(this,LeadSubmissionActivity::class.java)
-            intent.putExtra("Name",full_name)
-            intent.putExtra("Domain",domain)
-            intent.putExtra("OpCo",company)
-            startActivity(intent)
+            submitLead()
         }
+    }
+
+    private fun submitLead(){
+        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        if (vibrator.hasVibrator()) { // Vibrator availability checking
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                vibrator.vibrate(VibrationEffect.createOneShot(10, VibrationEffect.DEFAULT_AMPLITUDE)) // New vibrate method for API Level 26 or higher
+            } else {
+                vibrator.vibrate(10) // Vibrate method for below API Level 26
+            }
+        }
+
+        val intent=Intent(this,LeadSubmissionActivity::class.java)
+        intent.putExtra("Name",full_name)
+        intent.putExtra("Domain",domain)
+        intent.putExtra("OpCo",company)
+        startActivity(intent)
     }
 
     private fun checkForNoAssignedLeads(db:FirebaseFirestore) {
@@ -163,7 +169,7 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun setUpRecyclerViewForSubmittedLeads() {
-        val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Submitted Leads").orderBy("TimestampSubmission",Query.Direction.DESCENDING)
+        val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Submitted Leads").orderBy("TimestampLatest",Query.Direction.DESCENDING)
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<LeadModel> = FirestoreRecyclerOptions.Builder<LeadModel>().
         setQuery(query,LeadModel::class.java).build()
 
@@ -175,7 +181,7 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun setUpRecyclerViewForAssignedLeads() {
-        val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads").orderBy("TimestampSubmission",Query.Direction.DESCENDING)
+        val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection("Assigned Leads").orderBy("TimestampLatest",Query.Direction.DESCENDING)
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<LeadModel> = FirestoreRecyclerOptions.Builder<LeadModel>().
         setQuery(query,LeadModel::class.java).build()
 
@@ -194,6 +200,10 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.addLead->{
+                submitLead()
+            }
+
             R.id.signOut -> {
                 signOut(mAuth)
             }

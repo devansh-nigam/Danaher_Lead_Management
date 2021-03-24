@@ -114,7 +114,9 @@ class LeadReviewActivity : AppCompatActivity() {
                     binding.rejection.isVisible=true
                     binding.rejectedOn.text=it.data!!.get("TimestampRejected") as String?
                 }else if(status=="Closed"){
+                    binding.validation.isVisible=true
                     binding.closure.isVisible=true
+                    binding.validatedOn.text=it.data!!.get("TimestampValidated") as String?
                     binding.closedOn.text=it.data!!.get("TimestampClosed") as String?
                 }
 
@@ -230,6 +232,7 @@ class LeadReviewActivity : AppCompatActivity() {
         val now=Timestamp.now()
         val leadDetails = hashMapOf(
                 "Status" to "Closed",
+                "TimestampLatest" to now.toDate().toString(),
                 "TimestampClosed" to now.toDate().toString())
 
         val currentUser=mAuth.currentUser
@@ -258,6 +261,7 @@ class LeadReviewActivity : AppCompatActivity() {
         val now=Timestamp.now()
         val leadDetails = hashMapOf(
                 "Status" to "Validated",
+                "TimestampLatest" to now.toDate().toString(),
                 "TimestampValidated" to now.toDate().toString())
 
         val currentUser=mAuth.currentUser
@@ -286,6 +290,7 @@ class LeadReviewActivity : AppCompatActivity() {
         val now=Timestamp.now()
         val leadDetails = hashMapOf(
                 "Status" to "Rejected",
+                "TimestampLatest" to now.toDate().toString(),
                 "TimestampRejected" to now.toDate().toString())
 
         val currentUser=mAuth.currentUser
