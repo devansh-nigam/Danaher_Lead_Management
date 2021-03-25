@@ -72,7 +72,7 @@ class AssignedLeadsDashboardActivity : AppCompatActivity() {
         var Closed=binding.closedCheck.isChecked
         var Rejected=binding.rejectedCheck.isChecked
         var q:Query
-        query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())//.orderBy("TimestampSubmission",Query.Direction.DESCENDING)
+        query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString())
         if(Open && Validated && Closed && !Rejected)
         {
                q=query.whereNotEqualTo("Status","Rejected")
