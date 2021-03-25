@@ -136,7 +136,7 @@ class AssignedLeadsDashboardActivity : AppCompatActivity() {
             q=query.whereEqualTo("Status","Rejected")
         }
         else{
-            q=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString()).orderBy("TimestampSubmission",Query.Direction.DESCENDING)
+            q=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString()).orderBy("TimestampLatest",Query.Direction.DESCENDING)
         }
 
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<LeadModel> = FirestoreRecyclerOptions.Builder<LeadModel>().
