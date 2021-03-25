@@ -39,7 +39,7 @@ class AssignedLeadsDashboardActivity : AppCompatActivity() {
             binding.las.text="Submitted Leads"
         }
 
-        val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString()).orderBy("TimestampSubmission")
+        val query=db.collection("Users").document(mAuth.currentUser!!.email!!).collection(leads.toString()).orderBy("TimestampLatest",Query.Direction.DESCENDING)
         val firestoreRecyclerOptions: FirestoreRecyclerOptions<LeadModel> = FirestoreRecyclerOptions.Builder<LeadModel>().
         setQuery(query,LeadModel::class.java).build()
         assignedLeadAdapter= LeadAdapter(firestoreRecyclerOptions)
